@@ -1,0 +1,93 @@
+{
+  "background": "../data/backgrounds/default.jpg",
+  "background_pattern": {
+    "type": 0,
+    "amplitude": 16.0, 
+    "frequency1": 0.1, 
+    "frequency2": 0.23, 
+    "noise_intensity": 0.25
+  },
+  "font_color": {
+      "default": [
+          235, 235, 235
+      ], 
+      "menu": [
+          235, 235, 235
+      ],
+      "menu_unavailable": [
+          80, 80, 80
+      ], 
+      "no_selected": [
+          221, 221, 221
+      ]
+  },
+  "color": {
+    "all_window_back": [
+        1, 19, 13, 96
+    ],
+    "background": [
+        1, 19, 13, 128
+    ],
+    "menu_background": [
+        5, 40, 34, 220
+    ],
+    "item": [
+        255, 253, 243, 180
+    ],
+    "selected_item": [
+        127, 137, 106, 100
+    ],
+    "aimed_item": [
+        30, 74, 52, 100
+    ],
+    "aimed_menu_item": [
+        30, 74, 52, 100
+    ],
+    "border": [
+        69, 69, 69, 255
+    ],
+    "selected_filter": [
+        0, 128, 128, 255
+    ]
+  },
+  "icon_names": {
+    "opinion": [
+      "remove",
+      "sentiment_extremely_dissatisfied",
+      "sentiment_satisfied",
+      "sentiment_very_satisfied"
+    ], 
+    "status": [
+      "remove",
+      "do_not_disturb_on",
+      "hide_source",
+      "add_task",
+      "timer"
+    ]
+  },
+  "icon_colors": [
+    [
+      196, 196, 196
+    ],
+    [
+      255, 99, 71
+    ], 
+    [
+      244, 164, 96
+    ], 
+    [
+      127, 255, 212
+    ], 
+    [
+      0, 128, 128
+    ]
+  ],
+  "font_size": {
+      "general": 16,
+      "low": 14,
+      "big": 18,
+      "menu": 14,
+      "menu_icons": 19,
+      "icons": 19
+  }
+}

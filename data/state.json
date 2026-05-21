@@ -1,0 +1,25 @@
+{
+  "currentСategory": "Аниме",
+  "categories": {
+    "Аниме": {
+      "dir": "anime",
+      "urlForSearch": "https://rezka-ua.tv/search/?do=search&subaction=search&q="
+    },
+    "Фильмы": {
+      "dir": "films",
+      "urlForSearch": "https://rezka-ua.tv/search/?do=search&subaction=search&q="
+    },
+    "Сериалы": {
+      "dir": "serials",
+      "urlForSearch": "https://rezka-ua.tv/search/?do=search&subaction=search&q="
+    },
+    "Визуальные новеллы": {
+      "dir": "novels",
+      "urlForSearch": "https://www.google.com/search?q="
+    },
+    "Полнометражные аниме": {
+      "dir": "fullanime",
+      "urlForSearch": "https://rezka-ua.tv/search/?do=search&subaction=search&q="
+    }
+  }
+}
