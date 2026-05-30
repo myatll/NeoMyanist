@@ -196,13 +196,14 @@ void DrawBut(SDL_Renderer *renderer, int x_, int y_, int w_, int radius, SDL_Col
             int dx = radius - w;
             int dy = radius - h;
             if ((dx * dx + dy * dy) <= (radius * radius)) {
-                if (dx < 0) SDL_RenderDrawPoint(renderer, x_ - w_ / 2 + dx, y_ + dy);
-                else SDL_RenderDrawPoint(renderer, x_ + w_ / 2 + dx, y_ + dy);
+                if (dx < 0) SDL_RenderDrawPoint(renderer, x_ - (w_ >> 1) + dx, y_ + dy);
+                else if (dx > 0) SDL_RenderDrawPoint(renderer, x_ + (w_ >> 1) + dx, y_ + dy);
             }
         }
     }
 
-    SDL_Rect fillRect = {x_ - w_ / 2, y_ - radius + 1, w_, radius * 2 - 1};
+    SDL_Rect fillRect = {x_ - (w_ >> 1), y_ - radius + 1, w_, (radius << 1) - 1};
+    if (!(fillRect.w % 2)) fillRect.w += 1;
     SDL_RenderFillRect(renderer, &fillRect);
 
     if (clr.a == 0) return;

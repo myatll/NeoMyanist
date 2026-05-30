@@ -17,11 +17,7 @@ using json = nlohmann::json;
 
 class Categories {
 private:
-    SDL_Renderer* renderer;
     SDL_Texture* txtr;
-
-    json& status;
-    SDL_Event &e;
 
     bool updateTxtr;
     double modeAnim;
@@ -38,7 +34,7 @@ private:
     List& list;
 
 public:
-    Categories(SDL_Renderer* rnd, json& stt, Global& gInfo, SDL_Event &ev, Menu& mnu, List& lst, Search& srch);
+    Categories(Global& gInfo, Menu& mnu, List& lst, Search& srch);
     ~Categories() = default;
 
     std::string getCategory() const;

@@ -9,19 +9,20 @@
 #include "nlohmann/json.hpp"
 #include "structs.h"
 #include <vector>
+#include <map>
 #include <string>
 #include <fstream>
+#include "List.h"
+#include "Search.h"
+#include "Menu.h"
+
 using json = nlohmann::json;
 
+class List;
+class Search;
 class Filters {
 private:
-    SDL_Renderer* renderer;
     SDL_Texture* txtr;
-    TTF_Font* font;
-    TTF_Font* icons;
-
-    json& settings;
-    SDL_Event &e;
 
     bool updateTxtr;
     int startDrawIndex;
@@ -29,27 +30,31 @@ private:
     double scrollAnim;
 
     bool ctrl;
+    int MenuID;
 
     int mouseX;
     int mouseY;
 
     SDL_Rect posRect;
     Global& g;
+    List& list;
+    Search& search;
+    Menu& menu;
 
-    struct listDrawItem {
-        int opinion;
-        int status;
-        std::string name;
-    };
-    std::vector<listDrawItem> list;
+    std::vector<std::string> selectedFilters;
+    std::vector<std::pair<std::string, int>> availableFilters;
 
 public:
-    Filters(SDL_Renderer* rnd, TTF_Font* fnt, TTF_Font* icns, json& sttg, Global& gInfo, SDL_Event &ev);
+    Filters(Global& gInfo, Menu& mnu, List& lst, Search& srch);
     ~Filters() = default;
 
+    defJson filterJson;
+
+    void updateAvailableFilters(const std::map<std::string, int> &filters);
     void render();
     void setPos(SDL_Rect newPos);
     void handle();
+    void update();
 };
 
 

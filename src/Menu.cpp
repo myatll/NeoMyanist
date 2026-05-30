@@ -4,8 +4,8 @@
 
 #include "Menu.h"
 
-Menu::Menu(SDL_Renderer* rnd, json& sttg, Global& gInfo, SDL_Event &ev):
-    renderer(rnd), settings(sttg), g(gInfo), e(ev), iconSize(TTF_FontHeight(g.menuIconsFont)),
+Menu::Menu(SDL_Renderer* rnd, json& sttg, Global& gInfo):
+    renderer(rnd), settings(sttg), g(gInfo), iconSize(TTF_FontHeight(g.menuIconsFont)),
     MenuIndex(-1), startX(0), startY(0), mouseX(0), mouseY(0), selectedItem(-1), showAnim(0)
 {
 
@@ -63,11 +63,11 @@ void Menu::closeMenu() {
 
 void Menu::handleEvent() {
 	SDL_GetMouseState(&mouseX, &mouseY);
-    if (e.type == SDL_MOUSEBUTTONUP) {
+    if (g.e.type == SDL_MOUSEBUTTONUP) {
         if (MenuIndex != -1) {
             // if (startX >= mouseX or mouseX >= startX + menu[MenuIndex].w or startY >= mouseY or mouseY >= startY + menu[MenuIndex].h) closeMenu();
             if (selectedItem == -1) closeMenu();
-            else if (!menu[MenuIndex].draws[selectedItem].unavailable and e.button.button == SDL_BUTTON_LEFT){
+            else if (!menu[MenuIndex].draws[selectedItem].unavailable and g.e.button.button == SDL_BUTTON_LEFT){
                 res.notProcessed = true;
                 res.value = selectedItem;
                 res.lastId = getMenuId();
@@ -75,7 +75,7 @@ void Menu::handleEvent() {
             }
         }
 
-    } else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+    } else if (g.e.type == SDL_WINDOWEVENT && g.e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
         closeMenu();
     }
 }

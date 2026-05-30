@@ -1,5 +1,5 @@
 {
-  "background": "../data/backgrounds/image.psd.png",
+  "background": "../data/backgrounds/Konachan.com - 68817.jpg",
   "background_pattern": {
     "type": 0,
     "amplitude": 16.0, 
@@ -9,45 +9,45 @@
   },
   "font_color": {
       "default": [
-          249, 253, 255
+          234, 225, 226
       ], 
       "menu": [
-          249, 253, 255
+          6, 10, 17
       ],
       "menu_unavailable": [
-          166, 152, 139
+          80, 80, 80
       ], 
       "no_selected": [
-          243, 247, 250
+          6, 10, 17
       ]
   },
   "color": {
     "all_window_back": [
-        57, 34, 28, 0
+        212, 214, 213, 0
     ],
     "background": [
-        57, 34, 28, 160
+        57, 79, 102, 110
     ],
     "menu_background": [
-        59, 39, 33, 220
+        183, 189, 192, 220
     ],
     "item": [
         255, 253, 243, 180
     ],
     "selected_item": [
-        248, 168, 27, 100
+        71, 93, 130, 100
     ],
     "aimed_item": [
-        59, 39, 33, 100
+        56, 78, 99, 100
     ],
     "aimed_menu_item": [
-        252, 210, 165, 100
+        56, 78, 99, 100
     ],
     "border": [
-        56, 49, 56, 255
+        69, 69, 69, 255
     ],
     "selected_filter": [
-        198, 152, 119, 255
+        0, 128, 128, 255
     ]
   },
   "icon_names": {

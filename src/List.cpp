@@ -4,10 +4,11 @@
 
 #include "List.h"
 
+#include "Filters.h"
 #include "Search.h"
 
-List::List(SDL_Renderer *rnd, json &sttg, Global& gInfo, SDL_Event &ev, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr) :
-    renderer(rnd), settings(sttg), e(ev), txtr(nullptr), g(gInfo), menu(mnu), client(clnt), tloader(tldr),
+List::List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr) :
+    txtr(nullptr), g(gInfo), menu(mnu), client(clnt), tloader(tldr),
     updateTxtr(true), posRect{}, startDrawIndex(0), scrollAnim(0), currentIndex(-1), categ(nullptr),
     mouseX(0), mouseY(0), ctrl(false), needSave(false)
 {
@@ -41,9 +42,8 @@ List::List(SDL_Renderer *rnd, json &sttg, Global& gInfo, SDL_Event &ev, Menu& mn
     menu.addMenu(changeTipMenu);
 
     SDL_Surface* surface = IMG_Load("../data/loading.png");
-    loadindImg = SDL_CreateTextureFromSurface(renderer, surface);
+    loadindImg = SDL_CreateTextureFromSurface(g.renderer, surface);
     SDL_FreeSurface(surface);
-
 }
 
 void List::setSearchIter(Search *searchIter) {
@@ -52,6 +52,10 @@ void List::setSearchIter(Search *searchIter) {
 
 void List::setCategIter(Categories *categIter) {
     categ = categIter;
+}
+
+void List::setFiltersIter(Filters *filtersIter) {
+    filt = filtersIter;
 }
 
 void List::returnEditedItem(std::string &oldName, std::string newName, json& currentItem) {
@@ -85,7 +89,6 @@ void List::addItem(std::string name, json& currentItem) {
 
     for (std::vector<listDrawItem>::size_type i = 0; i != list.size(); ++i) {
         if (list[i].name == name) {
-            std::cout << i << std::endl;
             if (i > 1) {
                 startDrawIndex = i - 1;
                 scrollAnim = -fullItemSize;
@@ -100,15 +103,18 @@ void List::addItem(std::string name, json& currentItem) {
 void List::render() {
 
     if (updateTxtr) {
-        SDL_SetRenderDrawColor(renderer, g.allwindowback.r, g.allwindowback.g, g.allwindowback.b, 0);
-        SDL_SetRenderTarget(renderer, txtr);
-        SDL_RenderClear(renderer);
-        SDL_SetRenderDrawColor(renderer, g.background.r, g.background.g, g.background.b, g.background.a);
+        // SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+        // DrawCircle(g.renderer, posRect.x, posRect.y, 3);
 
-        DrawRoundedRect(renderer, {0, 0, posRect.w, posRect.h}, 15);
+        SDL_SetRenderDrawColor(g.renderer, g.background.r, g.background.g, g.background.b, 0);
+        SDL_SetRenderTarget(g.renderer, txtr);
+        SDL_RenderClear(g.renderer);
+        SDL_SetRenderDrawColor(g.renderer, g.background.r, g.background.g, g.background.b, g.background.a);
+
+        DrawRoundedRect(g.renderer, {0, 0, posRect.w, posRect.h}, 15);
 
         if (search->mode) {
-            // RenderText(renderer, list[0].name, 10, 10, text_color, font);
+            // RenderText(g.renderer, list[0].name, 10, 10, text_color, font);
             currentIndex = -1;
             int drawElemNum = static_cast<int>(scrollAnim / fullItemSize) - 1;
             while (drawElemNum*fullItemSize - static_cast<int>(scrollAnim) < posRect.h) {
@@ -118,27 +124,27 @@ void List::render() {
                     int drawOffset = drawElemNum*fullItemSize - static_cast<int>(scrollAnim) + (itemSize >> 1);
 
                     if (data[list[drawElemIndex].name].contains("id")) {
-                        SDL_SetRenderDrawColor(renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
-                        SDL_RenderDrawLineF(renderer, 10, drawOffset - (itemSize >> 2), 10, drawOffset + (itemSize >> 2));
+                        SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+                        SDL_RenderDrawLineF(g.renderer, 10, drawOffset - (itemSize >> 2), 10, drawOffset + (itemSize >> 2));
                     }
 
-                    if ((MenuID == -1 and drawOffset - (itemSize >> 1) <= mouseY && mouseY <= drawOffset + (itemSize >> 1) && 5 <= mouseX && mouseX <= posRect.w - 5) or MenuID == 22 and drawElemIndex == changeItemIndex) {
+                    if ((MenuID == -1 and drawOffset - (fullItemSize >> 1) <= mouseY && mouseY <= drawOffset + (fullItemSize >> 1) && 5 <= mouseX && mouseX <= posRect.w - 5) or MenuID == 22 and drawElemIndex == changeItemIndex) {
                         currentIndex = drawElemIndex;
-                        if (MenuID == -1) SDL_SetRenderDrawColor(renderer, g.aimedItem.r, g.aimedItem.g, g.aimedItem.b, g.aimedItem.a);
-                        else SDL_SetRenderDrawColor(renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
-                        DrawRoundedRect(renderer, {10, drawElemNum * fullItemSize - static_cast<int>(scrollAnim), posRect.w - 20, itemSize}, 10);
+                        if (MenuID == -1) SDL_SetRenderDrawColor(g.renderer, g.aimedItem.r, g.aimedItem.g, g.aimedItem.b, g.aimedItem.a);
+                        else SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+                        DrawRoundedRect(g.renderer, {10, drawElemNum * fullItemSize - static_cast<int>(scrollAnim), posRect.w - 20, itemSize}, 10);
                         if (!ctrl) {
-                            RenderText(renderer, settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
-                            RenderText(renderer, settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
+                            RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
+                            RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
                         }
-                        RenderText(renderer, list[drawElemIndex].name, 20, drawOffset, g.defaultText, g.defaultFont, false, true, posRect.w - 80);
+                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.defaultText, g.defaultFont, false, true, posRect.w - 80);
                     } else
-                        RenderText(renderer, list[drawElemIndex].name, 20, drawOffset, g.noSelectedText, g.defaultFont, false, true, posRect.w - 40 - ctrl*40);
+                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.noSelectedText, g.defaultFont, false, true, posRect.w - 40 - ctrl*40);
 
 
                     if (ctrl) {
-                        RenderText(renderer, settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
-                        RenderText(renderer, settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
+                        RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
+                        RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
                     }
 
                 }
@@ -155,29 +161,29 @@ void List::render() {
                     int drawOffset = drawElemNum*fullTipSize - static_cast<int>(scrollAnim) + (tipSize >> 1);
                     if ((MenuID == -1 and drawOffset - (tipSize >> 1) <= mouseY && mouseY <= drawOffset + (tipSize >> 1) && 5 <= mouseX && mouseX <= posRect.w - 5) or MenuID == 25 and drawElemIndex == changeItemIndex) {
                         currentIndex = drawElemIndex;
-                        if (MenuID == -1) SDL_SetRenderDrawColor(renderer, g.aimedItem.r, g.aimedItem.g, g.aimedItem.b, g.aimedItem.a);
-                        else SDL_SetRenderDrawColor(renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
-                        DrawRoundedRect(renderer, {10, drawElemNum * fullTipSize - static_cast<int>(scrollAnim), posRect.w - 20, tipSize}, 10);
+                        if (MenuID == -1) SDL_SetRenderDrawColor(g.renderer, g.aimedItem.r, g.aimedItem.g, g.aimedItem.b, g.aimedItem.a);
+                        else SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+                        DrawRoundedRect(g.renderer, {10, drawElemNum * fullTipSize - static_cast<int>(scrollAnim), posRect.w - 20, tipSize}, 10);
                     }
                     SDL_Rect rect{20, drawOffset - (tipSize >> 1) + 10, 60, 94};
                     if (tips[drawElemIndex].miniPosterLoaded) {
-                        if (!tips[drawElemIndex].miniPosterIsHozisontal) SDL_RenderCopy(renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
+                        if (!tips[drawElemIndex].miniPosterIsHozisontal) SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
                         else {
                             rect.w = 167;
-                            SDL_RenderCopy(renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
+                            SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
                         }
                     }
-                    else SDL_RenderCopy(renderer, loadindImg, nullptr, &rect);
+                    else SDL_RenderCopy(g.renderer, loadindImg, nullptr, &rect);
 
-                    RenderText_Wrapped(renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.defaultText, g.bigFont, false, false, posRect.w - 180);
+                    RenderText_Wrapped(g.renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.defaultText, g.bigFont, false, false, posRect.w - 180);
 
-                    RenderText(renderer, tips[drawElemIndex].data["year"], posRect.w - 50, drawOffset - (tipSize >> 1) + 15, g.noSelectedText, g.lowFont, true, true);
-                    RenderText(renderer, tips[drawElemIndex].genres, rect.w + 30, drawOffset + (tipSize >> 1) - 15, g.noSelectedText, g.lowFont, false, true, posRect.w - 110);
+                    RenderText(g.renderer, tips[drawElemIndex].data["year"], posRect.w - 50, drawOffset - (tipSize >> 1) + 15, g.noSelectedText, g.lowFont, true, true);
+                    RenderText(g.renderer, tips[drawElemIndex].genres, rect.w + 30, drawOffset + (tipSize >> 1) - 15, g.noSelectedText, g.lowFont, false, true, posRect.w - 110);
 
                     if (tips[drawElemIndex].data.contains("imdbRating")) {
-                        RenderText(renderer, std::format("IMDb: {:.2f}", tips[drawElemIndex].data["imdbRating"].get<double>()), posRect.w - 75, drawOffset + (tipSize >> 1) - 35, g.noSelectedText, g.lowFont, true, true);
+                        RenderText(g.renderer, std::format("IMDb: {:.2f}", tips[drawElemIndex].data["imdbRating"].get<double>()), posRect.w - 75, drawOffset + (tipSize >> 1) - 35, g.noSelectedText, g.lowFont, true, true);
                     }if (tips[drawElemIndex].data.contains("kinopoiskRating")) {
-                        RenderText(renderer, std::format("КиноПоиск: {:.2f}", tips[drawElemIndex].data["kinopoiskRating"].get<double>()), posRect.w - 75, drawOffset + (tipSize >> 1) - 15, g.noSelectedText, g.lowFont, true, true);
+                        RenderText(g.renderer, std::format("КиноПоиск: {:.2f}", tips[drawElemIndex].data["kinopoiskRating"].get<double>()), posRect.w - 75, drawOffset + (tipSize >> 1) - 15, g.noSelectedText, g.lowFont, true, true);
                     }
 
                 }
@@ -186,10 +192,10 @@ void List::render() {
         }
 
         updateTxtr = false;
-        SDL_SetRenderTarget(renderer, nullptr);
+        SDL_SetRenderTarget(g.renderer, nullptr);
     }
 
-    SDL_RenderCopy(renderer, txtr, nullptr, &posRect);
+    SDL_RenderCopy(g.renderer, txtr, nullptr, &posRect);
 }
 
 void List::update() {
@@ -304,8 +310,9 @@ void List::update() {
 
 void List::setPos(SDL_Rect newPos) {
     posRect = newPos;
+    g.bg->setFilter(newPos, 30);
     if (txtr != nullptr) SDL_DestroyTexture(txtr);
-    txtr = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, posRect.w, posRect.h);
+    txtr = SDL_CreateTexture(g.renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, posRect.w, posRect.h);
     SDL_SetTextureBlendMode(txtr, SDL_BLENDMODE_BLEND);
     updateTxtr = true;
 }
@@ -318,42 +325,42 @@ void List::handle() {
     mouseY-=posRect.y;
     if (0 <= mouseY && mouseY <= posRect.h && 0 <= mouseX && mouseX <= posRect.w and MenuID == -1) {
         updateTxtr = true;
-        if (e.type == SDL_MOUSEWHEEL) {
+        if (g.e.type == SDL_MOUSEWHEEL) {
             if (search->mode) {
-                if (e.wheel.y > 0) {
-                    if (startDrawIndex - e.wheel.y > -1) {
-                        scrollAnim += e.wheel.y * fullItemSize;
-                        startDrawIndex -= e.wheel.y;
+                if (g.e.wheel.y > 0) {
+                    if (startDrawIndex - g.e.wheel.y > -1) {
+                        scrollAnim += g.e.wheel.y * fullItemSize;
+                        startDrawIndex -= g.e.wheel.y;
                     }
                 }
-                else if (e.wheel.y < 0) {
-                    if (startDrawIndex - e.wheel.y + posRect.h / fullItemSize < list.size() +  1) {
-                        scrollAnim += e.wheel.y * fullItemSize;
-                        startDrawIndex -= e.wheel.y;
+                else if (g.e.wheel.y < 0) {
+                    if (startDrawIndex - g.e.wheel.y + posRect.h / fullItemSize < list.size() +  1) {
+                        scrollAnim += g.e.wheel.y * fullItemSize;
+                        startDrawIndex -= g.e.wheel.y;
                     }
                 }
             } else {
-                if (e.wheel.y > 0) {
-                    if (startDrawIndex - e.wheel.y > -1) {
-                        scrollAnim += e.wheel.y * fullTipSize;
-                        startDrawIndex -= e.wheel.y;
+                if (g.e.wheel.y > 0) {
+                    if (startDrawIndex - g.e.wheel.y > -1) {
+                        scrollAnim += g.e.wheel.y * fullTipSize;
+                        startDrawIndex -= g.e.wheel.y;
                     }
                 }
-                else if (e.wheel.y < 0) {
-                    if (startDrawIndex - e.wheel.y + posRect.h / fullTipSize < tips.size() +  1) {
-                        scrollAnim += e.wheel.y * fullTipSize;
-                        startDrawIndex -= e.wheel.y;
+                else if (g.e.wheel.y < 0) {
+                    if (startDrawIndex - g.e.wheel.y + posRect.h / fullTipSize < tips.size() +  1) {
+                        scrollAnim += g.e.wheel.y * fullTipSize;
+                        startDrawIndex -= g.e.wheel.y;
                     }
                 }
             }
-        } if (e.type == SDL_MOUSEBUTTONUP) {
+        } if (g.e.type == SDL_MOUSEBUTTONUP) {
             if (currentIndex != -1) {
                 if (search->mode) {
                     changeItemIndex = currentIndex;
                     menu.setMenu(22, mouseX + posRect.x, mouseY + posRect.y);
                 } else {
-                    if (e.button.button == SDL_BUTTON_LEFT) search->setTip(tips[currentIndex].name, tips[currentIndex].data);
-                    else if (e.button.button == SDL_BUTTON_RIGHT) {
+                    if (g.e.button.button == SDL_BUTTON_LEFT) search->setTip(tips[currentIndex].name, tips[currentIndex].data);
+                    else if (g.e.button.button == SDL_BUTTON_RIGHT) {
                         menu.setMenu(25, mouseX + posRect.x, mouseY + posRect.y);
                         changeItemIndex = currentIndex;
                     }
@@ -364,36 +371,65 @@ void List::handle() {
     } else if (currentIndex != -1) updateTxtr = true;
 }
 
+
 void List::loadCateg(const std::string path) {
     std::ifstream file(path);
     data = json::parse(file);
     file.close();
+    filt->updateAvailableFilters({});
+    filt->filterJson["genres"].clear();
     updateList("", {});
     categoryPath = path;
 }
 
 void List::updateList(const std::string &name, const json &currentItem) {
     startDrawIndex = 0;
-    int filtStatus = 0;
-    int filtOpinion = 0;
-    int drawFilter;
-    if (currentItem.contains("opinion")) filtOpinion = currentItem["opinion"];
-    if (currentItem.contains("status")) filtStatus = currentItem["status"];
-    drawFilter = 0;
+    int statusFilter = 0;
+    int opinionFilter = 0;
+    int drawFilter = 0;
+
+    if (currentItem.contains("opinion")) opinionFilter = currentItem["opinion"];
+    if (currentItem.contains("status")) statusFilter = currentItem["status"];
+    if (filt->filterJson.contains("drawFilter")) drawFilter = filt->filterJson["drawFilter"];
     list.clear();
+
+    std::map<std::string, int> availableFilters;
+
     if (drawFilter < 2) {
         for (auto it = data.begin(); it != data.end(); ++it) {
             listDrawItem newItem;
             newItem = { it.value()["opinion"], it.value()["status"], it.key() };
             bool add_flag = false;
-            if (filtStatus == 0 and filtOpinion == 0) add_flag = true;
-            else if (filtOpinion == 0 and newItem.status == filtStatus) add_flag = true;
-            else if (filtStatus == 0 and newItem.opinion == filtOpinion) add_flag = true;
-            else if (newItem.opinion == filtOpinion and newItem.status == filtStatus) add_flag = true;
+            if (statusFilter == 0 and opinionFilter == 0) add_flag = true;
+            else if (opinionFilter == 0 and newItem.status == statusFilter) add_flag = true;
+            else if (statusFilter == 0 and newItem.opinion == opinionFilter) add_flag = true;
+            else if (newItem.opinion == opinionFilter and newItem.status == statusFilter) add_flag = true;
             if (!name.empty() and add_flag) add_flag = (toLower(newItem.name).find(toLower(name)) != std::string::npos);
 
-            if (add_flag) list.push_back(newItem);
+            if (!filt->filterJson["genres"].empty() and add_flag) {
+                bool fullContains = true;
+                for (const std::string &genre: filt->filterJson["genres"].get<std::vector<std::string>>()) {
+                    if (it.value().contains("genres")) {
+                        bool contains = false;
+                        for (const std::string &ITgenre: it.value()["genres"].get<std::vector<std::string>>()) {
+                            if (ITgenre == genre) contains = true;
+                        }
+                        if (!contains) fullContains = false;
+                    } else fullContains = false;
+                }
+                if (!fullContains) add_flag = false;
+            }
+            if (add_flag) {
+                list.push_back(newItem);
+                if (it.value().contains("genres") and !it.value()["genres"].empty()) {
+                    for (const std::string &genre: it.value()["genres"].get<std::vector<std::string>>()) {
+                        if (availableFilters.contains(genre)) availableFilters[genre] += 1;
+                        else availableFilters[genre] = 1;
+                    }
+                }
+            }
         }
+        filt->updateAvailableFilters(availableFilters);
     } else {
         std::vector<std::pair<int, listDrawItem>> items;
         for (auto it = data.begin(); it != data.end(); ++it) {
@@ -401,10 +437,10 @@ void List::updateList(const std::string &name, const json &currentItem) {
             int addTime = it.value()["addTime"];
             newItem = {it.value()["opinion"], it.value()["status"], it.key()};
             bool add_flag = false;
-            if (filtStatus == 0 and filtOpinion == 0) add_flag = true;
-            else if (filtOpinion == 0 and newItem.status == filtStatus) add_flag = true;
-            else if (filtStatus == 0 and newItem.opinion == filtOpinion) add_flag = true;
-            else if (newItem.opinion == filtOpinion and newItem.status == filtStatus) add_flag = true;
+            if (statusFilter == 0 and opinionFilter == 0) add_flag = true;
+            else if (opinionFilter == 0 and newItem.status == statusFilter) add_flag = true;
+            else if (statusFilter == 0 and newItem.opinion == opinionFilter) add_flag = true;
+            else if (newItem.opinion == opinionFilter and newItem.status == statusFilter) add_flag = true;
             if (!name.empty() and add_flag) add_flag = (toLower(newItem.name).find(toLower(name)) != std::string::npos);
 
             if (add_flag) items.emplace_back(addTime, newItem);

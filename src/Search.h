@@ -18,15 +18,13 @@ using json = nlohmann::json;
 
 class List;
 class Categories;
+class Filters;
 class Search {
 private:
-    SDL_Renderer* renderer;
     SDL_Texture* txtr;
 
     Categories* categ;
-
-    json& settings;
-    SDL_Event &e;
+    Filters* filt;
 
     bool updateTxtr;
     double modeAnim;
@@ -55,11 +53,14 @@ private:
 public:
     bool mode;
 
-    Search(SDL_Renderer* rnd, json& sttg, Global& gInfo, SDL_Event &ev, Menu& mnu, List& lst, PipeClient& clnt);
+    Search(Global& gInfo, Menu& mnu, List& lst, PipeClient& clnt);
     ~Search() = default;
 
     void setCategIter(Categories* categIter);
+    void setFilterIter(Filters* filterIter);
     void reloadCateg();
+
+    void update4Filters() const;
 
     void resetCurrentItem();
     void setItem4Edit(std::string& name, json& data);

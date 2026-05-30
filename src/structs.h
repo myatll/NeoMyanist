@@ -5,10 +5,12 @@
 #ifndef NEOMYANIST_STRUCTS_H
 #define NEOMYANIST_STRUCTS_H
 
+#include "Background.h"
+
 using json = nlohmann::json;
 
 struct Global {
-    SDL_Color allwindowback;
+    SDL_Color allWindowBack;
     SDL_Color background;
     SDL_Color menuBackground;
     SDL_Color item;
@@ -32,6 +34,17 @@ struct Global {
 
     json& settings;
     json& state;
+
+    SDL_Event& e;
+    SDL_Renderer* renderer;
+    Background* bg;
+
+    void setRenderer(SDL_Renderer* rnd) {
+        renderer = rnd;
+    }
+    void setBackground(Background* _bg) {
+        bg = _bg;
+    }
 };
 
 #endif //NEOMYANIST_STRUCTS_H

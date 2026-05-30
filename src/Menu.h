@@ -86,7 +86,7 @@ struct menuItem {
 class Menu
 {
 public:
-    Menu(SDL_Renderer* rnd, json& sttg, Global& gInfo, SDL_Event &ev);
+    Menu(SDL_Renderer* rnd, json& sttg, Global& gInfo);
     ~Menu() = default;
 
     int MenuIndex;
@@ -107,7 +107,6 @@ private:
     json& settings;
 
     Global& g;
-    SDL_Event &e;
 
     int startX;
     int startY;

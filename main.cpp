@@ -8,7 +8,7 @@
 #include "src/Search.h"
 #include "src/Menu.h"
 #include "src/List.h"
-// #include "src/Filters.h"      ---------------
+#include "src/Filters.h"
 #include "src/Categories.h"
 #include "src/Background.h"
 #include "src/TextureLoader.h"
@@ -34,6 +34,8 @@ int main(int argc, char* argv[]) {
     file >> state;
     file.close();
 
+    SDL_Event e;
+
     Global gInfo {
         {static_cast<Uint8>(settings["color"]["all_window_back"][0]), static_cast<Uint8>(settings["color"]["all_window_back"][1]), static_cast<Uint8>(settings["color"]["all_window_back"][2]), static_cast<Uint8>(settings["color"]["all_window_back"][3])},
         {static_cast<Uint8>(settings["color"]["background"][0]), static_cast<Uint8>(settings["color"]["background"][1]), static_cast<Uint8>(settings["color"]["background"][2]), static_cast<Uint8>(settings["color"]["background"][3])},
@@ -57,8 +59,7 @@ int main(int argc, char* argv[]) {
         TTF_OpenFont("../data/fonts/font.ttf", settings["font_size"]["menu"]),
         TTF_OpenFont("../data/fonts/icons.ttf", settings["font_size"]["menu_icons"]),
 
-        settings,
-        state
+        settings, state, e
     };
 
     for (auto & i : settings["icon_colors"]) {
@@ -88,8 +89,8 @@ int main(int argc, char* argv[]) {
     STARTUPINFOA si = { sizeof(si) };
     PROCESS_INFORMATION pi;
 
-    std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
-    // std::string cmd = "find.exe";
+    // std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
+    std::string cmd = "find.exe";
 
     if (!CreateProcessA(
         NULL,
@@ -110,44 +111,43 @@ int main(int argc, char* argv[]) {
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (!window) { SDL_Quit(); return 1; }
-    SDL_SetWindowMinimumSize(window, WINDOW_WIDTH, WINDOW_HEIGHT);
+    SDL_SetWindowMinimumSize(window, 520, 330);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer) { SDL_DestroyWindow(window); SDL_Quit(); return 1; }
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-
-    SDL_Event e;
+    gInfo.setRenderer(renderer);
 
     AsyncTextureLoader tloader(renderer);
     tloader.Start();
 
     Background bg(renderer);
     bg.loadOptImage(settings["background"]);
+    gInfo.setBackground(&bg);
 
-    Menu menu(renderer, settings, gInfo, e);
+    Menu menu(renderer, settings, gInfo);
 
-    List list(renderer, settings, gInfo, e, menu, client, tloader);
-    Search search(renderer, settings, gInfo, e, menu, list, client);
-    Categories categories(renderer, state, gInfo, e, menu , list, search);
-    // Filters filters(renderer, gen_font, icons, settings, gInfo, e); ------------------------------------------------
-
-    search.setPos({ 30, 30, WINDOW_WIDTH - 260, 50 });
-    list.setPos({ 30, 110, WINDOW_WIDTH - 60, WINDOW_HEIGHT - 140 });
-    // search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
-    // filters.setPos({ WINDOW_WIDTH - 200, 110, 170, WINDOW_HEIGHT - 140 });          ------------------------------------
-    categories.setPos({ WINDOW_WIDTH - 200, 30, 170, 50 });
+    List list(gInfo, menu, client, tloader);
+    Search search(gInfo, menu, list, client);
+    Filters filters(gInfo, menu, list, search);
+    list.setSearchIter(&search);
+    list.setFiltersIter(&filters);
+    Categories categories(gInfo, menu, list, search);
 
     bg.generatePattern(settings["background_pattern"]["type"], settings["background_pattern"]["amplitude"], settings["background_pattern"]["frequency1"], settings["background_pattern"]["frequency2"], settings["background_pattern"]["noise_intensity"]);
     bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
-    bg.setFilter({ 30, 30, WINDOW_WIDTH - 260, 50 }, 15);
-    bg.setFilter({ 30, 110, WINDOW_WIDTH - 260, WINDOW_HEIGHT - 140 }, 15);
-    bg.setFilter({ WINDOW_WIDTH - 200, 110, 170, WINDOW_HEIGHT - 140 }, 15);
-    bg.setFilter({ WINDOW_WIDTH - 200, 30, 170, 50 }, 15);
+
+    list.setPos({ 30, 110, WINDOW_WIDTH - 280, WINDOW_HEIGHT - 140 });
+    search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
+    filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
+    categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
 
     menu.setWinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-    list.setSearchIter(&search);
     list.setCategIter(&categories);
     search.setCategIter(&categories);
+    search.setFilterIter(&filters);
+
+    bool drawCategories = true;
 
     bool running = true;
     while (running) {
@@ -155,10 +155,12 @@ int main(int argc, char* argv[]) {
 
         while (SDL_PollEvent(&e)) {
             menu.handleEvent();
-            list.handle();
             search.handle();
-            categories.handle();
-
+            list.handle();
+            if (drawCategories) {
+                categories.handle();
+                filters.handle();
+            }
 
             if (e.type == SDL_QUIT) {
                 running = false;
@@ -169,15 +171,17 @@ int main(int argc, char* argv[]) {
 
                 menu.setWinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-                search.setPos({ 30, 30, WINDOW_WIDTH - 260, 50 });
-                list.setPos({ 30, 110, WINDOW_WIDTH - 60, WINDOW_HEIGHT - 140 });
-                // filters.setPos({ WINDOW_WIDTH - 200, 110, 170, WINDOW_HEIGHT - 140 }); ------------------------------------------
-                categories.setPos({ WINDOW_WIDTH - 200, 30, 170, 50 });
+                drawCategories = WINDOW_WIDTH > 900;
+                if (drawCategories) {
+                    search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
+                    categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
+                    list.setPos({ 30, 110, WINDOW_WIDTH - 280, WINDOW_HEIGHT - 140 });
+                    filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
+                } else {
+                    search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
+                    list.setPos({ 30, 110, WINDOW_WIDTH - 60, WINDOW_HEIGHT - 140 });
+                }
 
-                bg.setFilter({ 30, 30, WINDOW_WIDTH - 260, 50 }, 15);
-                bg.setFilter({ 30, 110, WINDOW_WIDTH - 260, WINDOW_HEIGHT - 140 }, 15);
-                bg.setFilter({ WINDOW_WIDTH - 200, 110, 170, WINDOW_HEIGHT - 140 }, 15);
-                bg.setFilter({ WINDOW_WIDTH - 200, 30, 170, 50 }, 15);
             }
         }
 
@@ -185,27 +189,37 @@ int main(int argc, char* argv[]) {
         SDL_RenderClear(renderer);
 
         bg.render();
-        SDL_SetRenderDrawColor(renderer, gInfo.allwindowback.r, gInfo.allwindowback.g, gInfo.allwindowback.b, gInfo.allwindowback.a);
+        SDL_SetRenderDrawColor(renderer, gInfo.allWindowBack.r, gInfo.allWindowBack.g, gInfo.allWindowBack.b, gInfo.allWindowBack.a);
         SDL_Rect fillRect = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
         SDL_RenderFillRect(renderer, &fillRect);
 
 
         list.update();
         search.update();
-        categories.update();
+        if (drawCategories) {
+            categories.update();
+            filters.update();
+        }
 
-        list.render();
+
         search.render();
-        // filters.render(); -----------------------------
-        categories.render();
+        list.render();
+        if (drawCategories) {
+            categories.render();
+            filters.render();
+        }
 
         menu.render();
+
+        // RenderText(renderer, std::to_string(WINDOW_WIDTH), 20, 20, gInfo.selectedItem, gInfo.iconsFont, false, true);
 
         SDL_RenderPresent(renderer);
 
         if (SDL_GetTicks() - frameStart < 16) {
             SDL_Delay(16 - SDL_GetTicks() + frameStart); // Задержка, чтобы уложиться в лимит
         }
+        // RenderText(renderer, std::to_string(1000 / (SDL_GetTicks() - frameStart)), 20, 20, gInfo.selectedItem, gInfo.iconsFont, false, true);
+        // SDL_RenderPresent(renderer);
     }
 
     tloader.Stop();

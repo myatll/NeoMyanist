@@ -195,8 +195,19 @@
     },
     "Башня Бога": {
         "addTime": 15,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Драма",
+            "Фэнтези",
+            "Тайна"
+        ],
+        "id": "40221",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/40221/mini_alt-1cb700e903b598000e1f18e63d39aeaa.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2020 год"
     },
     "Бездарная Нана": {
         "addTime": 1777326819,
@@ -205,8 +216,17 @@
     },
     "Бек": {
         "addTime": 1777308236,
+        "genres": [
+            "Сёнен",
+            "Драма",
+            "Музыка"
+        ],
+        "id": "57",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/57/mini_alt-5b51ff40fefd9df300026a5f740977d4.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2004 год"
     },
     "Белого мага, изгнанного из команды героя, подобрал авантюрист ранга S: Этот белый маг слишком нестандартный": {
         "addTime": 17,
@@ -528,6 +548,21 @@
         "addTime": 57,
         "opinion": 0,
         "status": 1
+    },
+    "Гроб принцессы Чайки": {
+        "addTime": 1779548706,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Романтика"
+        ],
+        "id": "20853",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/20853/mini_alt-19d430f85a967e896a728fe6b56f80cd.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
     },
     "Да просто так": {
         "addTime": 58,
@@ -1678,9 +1713,9 @@
         ],
         "id": "40904",
         "miniPoster": "https://shikimori.io/uploads/poster/animes/40904/mini_alt-6670fbf7026acfbe5f1c2f537e32ca55.jpeg",
-        "opinion": 0,
+        "opinion": 2,
         "service": "Shikimori",
-        "status": 1,
+        "status": 2,
         "year": "2021 год"
     },
     "Розарио + вампир": {
@@ -2134,10 +2169,19 @@
         "opinion": 0,
         "status": 1
     },
-    "Хроники акаши": {
+    "Хроники Акаши — худшего магического преподавателя": {
         "addTime": 266,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Школа"
+        ],
+        "id": "32951",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/32951/mini_alt-de367ec694876489e821bc7eb4010ce9.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Хроники людей и демонов ": {
         "addTime": 267,
@@ -2236,8 +2280,18 @@
     },
     "Эта фарфоровая кукла влюбилась": {
         "addTime": 283,
-        "opinion": 0,
-        "status": 1
+        "genres": [
+            "Сэйнэн",
+            "Романтика",
+            "Культура отаку",
+            "Школа"
+        ],
+        "id": "48736",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/48736/mini_alt-3ccdaa52da93ac0f97ee2d5721e1c868.jpeg",
+        "opinion": 3,
+        "service": "Shikimori",
+        "status": 2,
+        "year": "2022 год"
     },
     "Этот герой неуязвим, но очень осторожен": {
         "addTime": 284,
@@ -2304,11 +2358,6 @@
         "opinion": 0,
         "status": 1
     },
-    "ЯЧc": {
-        "addTime": 1778373192,
-        "opinion": 0,
-        "status": 1
-    },
     "Ямада-кун и семь ведьм": {
         "addTime": 1777310675,
         "opinion": 0,
@@ -2327,10 +2376,5 @@
         "service": "Shikimori",
         "status": 1,
         "year": "2014 год"
-    },
-    "вы": {
-        "addTime": 1779097459,
-        "opinion": 0,
-        "status": 1
     }
 }

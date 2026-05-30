@@ -25,18 +25,18 @@ using json = nlohmann::json;
 using defJson = nlohmann::ordered_json;
 
 class Search;
+class Filters;
 class Categories;
 class List {
 private:
-    SDL_Renderer* renderer;
     SDL_Texture* txtr;
     SDL_Texture* loadindImg;
 
     Categories* categ;
+    Filters* filt;
+    Search* search;
 
     json data;
-    json& settings;
-    SDL_Event &e;
 
     int startDrawIndex;
     int currentIndex;
@@ -49,7 +49,6 @@ private:
     int mouseX;
     int mouseY;
 
-    Search* search;
     PipeClient& client;
     AsyncTextureLoader& tloader;
     SDL_Rect posRect;
@@ -79,11 +78,12 @@ private:
 public:
     bool updateTxtr;
 
-    List(SDL_Renderer* rnd, json& sttg, Global& gInfo, SDL_Event &ev, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr);
+    List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr);
     ~List() = default;
 
     void setSearchIter(Search* searchIter);
     void setCategIter(Categories* categIter);
+    void setFiltersIter(Filters* filtersIter);
     void returnEditedItem(std::string& oldName, std::string newName, json& currentItem);
     void addItem(std::string name, json& currentItem);
 
