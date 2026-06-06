@@ -57,7 +57,7 @@ struct DownloadedImageData {
 // Структура для готовой текстуры
 struct TextureResult {
     SDL_Texture* texture = nullptr;
-    bool isHorizontal = false;
+    double aspect = 1;
     int id = -1;
     bool success = false;
     std::string error;
@@ -99,7 +99,7 @@ private:
     void DownloadThread();
 
     // Создание текстуры из памяти
-    static SDL_Texture* CreateTextureFromMemory(SDL_Renderer* renderer, const std::vector<unsigned char>& data, bool& isHorizontal);
+    static SDL_Texture* CreateTextureFromMemory(SDL_Renderer* renderer, const std::vector<unsigned char>& data, double& aspect);
 
 public:
     AsyncTextureLoader(SDL_Renderer* renderer);

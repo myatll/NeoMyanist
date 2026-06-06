@@ -1,7 +1,7 @@
 #include "TextureLoader.h"
 
 // Создание текстуры из памяти
-SDL_Texture* AsyncTextureLoader::CreateTextureFromMemory(SDL_Renderer* renderer, const std::vector<unsigned char>& data, bool& isHorizontal) {
+SDL_Texture* AsyncTextureLoader::CreateTextureFromMemory(SDL_Renderer* renderer, const std::vector<unsigned char>& data, double& aspect) {
     SDL_RWops* rw = SDL_RWFromConstMem(data.data(), data.size());
     if (!rw) return nullptr;
 
@@ -11,7 +11,7 @@ SDL_Texture* AsyncTextureLoader::CreateTextureFromMemory(SDL_Renderer* renderer,
     if (!surface) return nullptr;
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (surface->w > surface->h) isHorizontal = true;
+    aspect = static_cast<double>(surface->w) / surface->h;
     SDL_FreeSurface(surface);
 
     return texture;
@@ -147,7 +147,7 @@ void AsyncTextureLoader::ProcessLoadedData() {
         }
         
         if (isLatest && item.success) {
-            result.texture = CreateTextureFromMemory(renderer, item.data, result.isHorizontal);
+            result.texture = CreateTextureFromMemory(renderer, item.data, result.aspect);
             if (result.texture) {
                 result.success = true;
             } else {

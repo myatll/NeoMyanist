@@ -98,6 +98,8 @@ public:
     void handleEvent();
     void render();
 
+    menuItem& menuItemByID(int id);
+
     [[nodiscard]] int getMenuId() const;
     int menuResultById(int id);
     std::string menuResultNameById(int id);

@@ -6,11 +6,12 @@
 
 #include "Filters.h"
 #include "Search.h"
+#include "ItemInfo.h"
 
 List::List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr) :
     txtr(nullptr), g(gInfo), menu(mnu), client(clnt), tloader(tldr),
     updateTxtr(true), posRect{}, startDrawIndex(0), scrollAnim(0), currentIndex(-1), categ(nullptr),
-    mouseX(0), mouseY(0), ctrl(false), needSave(false)
+    mouseX(0), mouseY(0), ctrl(false), needSave(false), MenuID(-1)
 {
 
     menuItem changeItemMenu;
@@ -19,14 +20,11 @@ List::List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr)
     changeItemMenu.add("delete", "Удалить");
     changeItemMenu.add("captive_portal", "Найти на сайте");
     changeItemMenu.add("image_search", "Узнать подробности");
-    changeItemMenu.add("favorite", "Пометить любимым");
     changeItemMenu.add("note_stack_add", "Добавить пометку");
 
     changeItemMenu.setOffset(2, true);
-    changeItemMenu.setOffset(4, true);
-    changeItemMenu.setUnavailable(3, true);
+    // changeItemMenu.setUnavailable(3, true);
     changeItemMenu.setUnavailable(4, true);
-    changeItemMenu.setUnavailable(5, true);
     changeItemMenu.type = 0;
     changeItemMenu.id = 22;
     menu.addMenu(changeItemMenu);
@@ -36,14 +34,10 @@ List::List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr)
     changeTipMenu.add("captive_portal", "Найти на сайте");
     changeTipMenu.add("image_search", "Узнать подробности");
 
-    changeTipMenu.setUnavailable(1, true);
+    // changeTipMenu.setUnavailable(1, true);
     changeTipMenu.type = 0;
     changeTipMenu.id = 25;
     menu.addMenu(changeTipMenu);
-
-    SDL_Surface* surface = IMG_Load("../data/loading.png");
-    loadindImg = SDL_CreateTextureFromSurface(g.renderer, surface);
-    SDL_FreeSurface(surface);
 }
 
 void List::setSearchIter(Search *searchIter) {
@@ -52,6 +46,10 @@ void List::setSearchIter(Search *searchIter) {
 
 void List::setCategIter(Categories *categIter) {
     categ = categIter;
+}
+
+void List::setInfoIter(ItemInfo *iinfoIter) {
+    iinfo = iinfoIter;
 }
 
 void List::setFiltersIter(Filters *filtersIter) {
@@ -134,17 +132,17 @@ void List::render() {
                         else SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
                         DrawRoundedRect(g.renderer, {10, drawElemNum * fullItemSize - static_cast<int>(scrollAnim), posRect.w - 20, itemSize}, 10);
                         if (!ctrl) {
-                            RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
-                            RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
+                            RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.opinionIconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
+                            RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.statusIconColors[list[drawElemIndex].status], g.iconsFont, true, true);
                         }
-                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.defaultText, g.defaultFont, false, true, posRect.w - 80);
+                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.defaultText, g.defaultFont, 0, 1, posRect.w - 80);
                     } else
-                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.noSelectedText, g.defaultFont, false, true, posRect.w - 40 - ctrl*40);
+                        RenderText(g.renderer, list[drawElemIndex].name, 20, drawOffset, g.noSelectedText, g.defaultFont, 0, 1, posRect.w - 40 - ctrl*40);
 
 
                     if (ctrl) {
-                        RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.iconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
-                        RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.iconColors[list[drawElemIndex].status], g.iconsFont, true, true);
+                        RenderText(g.renderer, g.settings["icon_names"]["opinion"][list[drawElemIndex].opinion], posRect.w - 55, drawOffset, g.opinionIconColors[list[drawElemIndex].opinion], g.iconsFont, true, true);
+                        RenderText(g.renderer, g.settings["icon_names"]["status"][list[drawElemIndex].status], posRect.w - 25, drawOffset, g.statusIconColors[list[drawElemIndex].status], g.iconsFont, true, true);
                     }
 
                 }
@@ -165,15 +163,12 @@ void List::render() {
                         else SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
                         DrawRoundedRect(g.renderer, {10, drawElemNum * fullTipSize - static_cast<int>(scrollAnim), posRect.w - 20, tipSize}, 10);
                     }
-                    SDL_Rect rect{20, drawOffset - (tipSize >> 1) + 10, 60, 94};
+                    SDL_Rect rect{20, drawOffset - (tipSize >> 1) + 8, 60, 94};
                     if (tips[drawElemIndex].miniPosterLoaded) {
-                        if (!tips[drawElemIndex].miniPosterIsHozisontal) SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
-                        else {
-                            rect.w = 167;
-                            SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
-                        }
+                        rect.w = 94 * tips[drawElemIndex].miniPosterAspect;
+                        SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
                     }
-                    else SDL_RenderCopy(g.renderer, loadindImg, nullptr, &rect);
+                    else SDL_RenderCopy(g.renderer, g.loadindImg, nullptr, &rect);
 
                     RenderText_Wrapped(g.renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.defaultText, g.bigFont, false, false, posRect.w - 180);
 
@@ -205,44 +200,51 @@ void List::update() {
         std::string msg = client.receive();
         if (msg.back() == '\n') msg.pop_back();
         defJson received = defJson::parse(msg);
-        if (received.contains("searchTips") and !received.empty()) {
-            if (MenuID == 25) {
-                changeItemIndex = -1;
-                menu.closeMenu();
-            }
-            std::vector<SearchTipsDrawItem> newTips;
-            for (auto it = received["searchTips"].begin(); it != received["searchTips"].end(); ++it) {
-                SearchTipsDrawItem newTip;
-                newTip.data = it.value();
-                newTip.name = it.key();
-
-                std::vector<std::string> v = it.value()["genres"].get<std::vector<std::string>>();
-                std::string result;
-                for (size_t i = 0; i < v.size(); ++i) {
-                    result += v[i];
-                    if (i < v.size() - 1) result += ", "; // Добавляем запятую, если не последний элемент
+        if (!received.empty()) {
+            if (received.contains("searchTips")) {
+                if (MenuID == 25) {
+                    changeItemIndex = -1;
+                    menu.closeMenu();
                 }
-                newTip.genres = result;
+                std::vector<SearchTipsDrawItem> newTips;
+                for (auto it = received["searchTips"].begin(); it != received["searchTips"].end(); ++it) {
+                    SearchTipsDrawItem newTip;
+                    newTip.data = it.value();
+                    newTip.name = it.key();
 
-                bool alreadyLoaded = false;
-                for (auto& tip : tips) {
-                    if (tip.data["id"] == it.value()["id"]) {
-                        newTip = tip;
-                        alreadyLoaded = true;
-                        tip.miniPosterLoaded = false;
-                        break;
+                    std::vector<std::string> v = it.value()["genres"].get<std::vector<std::string>>();
+                    std::string result;
+                    for (size_t i = 0; i < v.size(); ++i) {
+                        result += v[i];
+                        if (i < v.size() - 1) result += ", "; // Добавляем запятую, если не последний элемент
                     }
-                }
-                if (!alreadyLoaded) tloader.LoadTexture(it.value()["miniPoster"], newTips.size());
+                    newTip.genres = result;
 
-                newTips.push_back(newTip);
+                    bool alreadyLoaded = false;
+                    for (auto& tip : tips) {
+                        if (tip.data["id"] == it.value()["id"]) {
+                            newTip = tip;
+                            alreadyLoaded = true;
+                            tip.miniPosterLoaded = false;
+                            break;
+                        }
+                    }
+                    if (!alreadyLoaded) tloader.LoadTexture(it.value()["miniPoster"], newTips.size());
+
+                    newTips.push_back(newTip);
+                }
+                for (const auto& tip : tips) {
+                    if (tip.miniPosterLoaded) SDL_DestroyTexture(tip.miniPoster);
+                }
+                tips = newTips;
+                startDrawIndex = 0;
+                updateTxtr = true;
+            } else if (received.contains("fullInfo")) {
+                tloader.LoadTexture(received["fullInfo"]["poster"], 0 - std::stoi(received["fullInfo"]["id"].get<std::string>()));
+                iinfo->addInfo(received["fullInfo"]);
+            } else if (received.contains("error")) {
+                std::cout << received.dump() << std::endl;
             }
-            for (const auto& tip : tips) {
-                if (tip.miniPosterLoaded) SDL_DestroyTexture(tip.miniPoster);
-            }
-            tips = newTips;
-            startDrawIndex = 0;
-            updateTxtr = true;
         }
     }
 
@@ -251,11 +253,15 @@ void List::update() {
     auto results = tloader.GetAllReadyTextures();
     for (auto& result : results) {
         if (result.success) {
-            if (result.id < tips.size()) {
-                tips[result.id].miniPoster = result.texture;
-                tips[result.id].miniPosterLoaded = true;
-                tips[result.id].miniPosterIsHozisontal = result.isHorizontal;
-                updateTxtr = true;
+            if (result.id >= 0) {
+                if (result.id < tips.size()) {
+                    tips[result.id].miniPoster = result.texture;
+                    tips[result.id].miniPosterLoaded = true;
+                    tips[result.id].miniPosterAspect = result.aspect;
+                    updateTxtr = true;
+                }
+            } else {
+                iinfo->setPoster(result.texture, -result.id, result.aspect);
             }
         }
     }
@@ -283,6 +289,20 @@ void List::update() {
                 if (SDL_OpenURL(url.c_str()) != 0) {
                     printf("Failed to open URL: %s\n", SDL_GetError());
                 }
+            } else if (result_ == 3) {
+                if (data[list[changeItemIndex].name].contains("id")) {
+                    json msg;
+                    msg["getMoreInfo"] = {
+                        {"category", categ->getCategory()},
+                        {"service", data[list[changeItemIndex].name]["service"]},
+                        {"id", data[list[changeItemIndex].name]["id"]}
+                    };
+                    client.send(msg.dump() + "\n");
+                    msg.clear();
+                    msg = data[list[changeItemIndex].name];
+                    msg["name"] = list[changeItemIndex].name;
+                    iinfo->setItem(msg);
+                }
             }
         } else if ((result_ = menu.menuResultById(25)) != -1) {
             if (result_ == 0) {
@@ -292,6 +312,18 @@ void List::update() {
                 if (SDL_OpenURL(url.c_str()) != 0) {
                     printf("Failed to open URL: %s\n", SDL_GetError());
                 }
+            } else if (result_ == 1) {
+                json msg;
+                msg["getMoreInfo"] = {
+                    {"category", categ->getCategory()},
+                    {"service", tips[changeItemIndex].data["service"]},
+                    {"id", tips[changeItemIndex].data["id"]}
+                };
+                client.send(msg.dump() + "\n");
+                msg.clear();
+                msg = tips[changeItemIndex].data;
+                msg["name"] = tips[changeItemIndex].name;
+                iinfo->setItem(msg);
             }
         }
     }
@@ -357,6 +389,7 @@ void List::handle() {
             if (currentIndex != -1) {
                 if (search->mode) {
                     changeItemIndex = currentIndex;
+                    menu.menuItemByID(22).setUnavailable(3, !data[list[changeItemIndex].name].contains("id"));
                     menu.setMenu(22, mouseX + posRect.x, mouseY + posRect.y);
                 } else {
                     if (g.e.button.button == SDL_BUTTON_LEFT) search->setTip(tips[currentIndex].name, tips[currentIndex].data);

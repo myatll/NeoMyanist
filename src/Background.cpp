@@ -92,6 +92,10 @@ void Background::cropToAspectRatio() {
 }
 
 void Background::generatePattern(int index_, float amplitude, float frequency1, float frequency2, float noiseIntensity) {
+    if (index_ < 0) {
+        needFilter = false;
+        return;
+    }
     if (index_ == 0) {
         for (int i = 0; i < block_sz; ++i) {
             for (int j = 0; j < block_sz; ++j) {
@@ -157,6 +161,7 @@ void Background::render() {
 }
 
 void Background::setFilter(SDL_Rect rct, int radius, bool relative, bool unSafe) {
+    if (!needFilter) return;
     if (!relative) {
         rct.x -= posRect.x;
         rct.y -= posRect.y;

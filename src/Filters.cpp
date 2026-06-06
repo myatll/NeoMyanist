@@ -18,19 +18,27 @@ void Filters::updateAvailableFilters(const std::map<std::string, int> &filters) 
     if (filters.empty()) {
         filterJson["genres"].clear();
         selectedFilters.clear();
-    }
-    std::vector<std::pair<std::string, int>> vec(filters.begin(), filters.end());
-    for (const auto& filter: selectedFilters) {
-        for (auto& item : vec) {
-            if (filter == item.first) item.second = -1;
+        availableFilters.clear();
+        g.drawFilters = false;
+        g.needReSize = true;
+    } else {
+        std::vector<std::pair<std::string, int>> vec(filters.begin(), filters.end());
+        for (const auto& filter: selectedFilters) {
+            for (auto& item : vec) {
+                if (filter == item.first) item.second = -1;
+            }
+        }
+        std::ranges::sort(vec, [](const auto& a, const auto& b) {
+            if (a.second == -1 && b.second != -1) return true;
+            if (b.second == -1 && a.second != -1) return false;
+            return a.second > b.second;
+        });
+        availableFilters = vec;
+        if (g.drawCategories) {
+            g.drawFilters = true;
+            g.needReSize = true;
         }
     }
-    std::ranges::sort(vec, [](const auto& a, const auto& b) {
-        if (a.second == -1 && b.second != -1) return true;
-        if (b.second == -1 && a.second != -1) return false;
-        return a.second > b.second;
-    });
-    availableFilters = vec;
     startDrawIndex = 0;
     updateTxtr = true;
 }
@@ -145,4 +153,8 @@ void Filters::update() {
         MenuID = menu.getMenuId();
         updateTxtr = true;
     }
+}
+
+void Filters::updateDrawState() const {
+    g.drawFilters = (g.drawCategories and !availableFilters.empty());
 }

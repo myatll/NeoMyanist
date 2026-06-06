@@ -96,7 +96,8 @@ void Menu::render() {
                 DrawCircle(renderer, startX, startY + i * iconSize, static_cast<int>(iconSize * 0.625));
                 selectedItem = i;
             }
-            RenderText(renderer, menu[MenuIndex].draws[i].icon, startX, startY + i * iconSize, g.iconColors[i], g.menuIconsFont, true, true);
+            if (menu[MenuIndex].id == 10) RenderText(renderer, menu[MenuIndex].draws[i].icon, startX, startY + i * iconSize, g.opinionIconColors[i], g.menuIconsFont, true, true);
+            else if (menu[MenuIndex].id == 15) RenderText(renderer, menu[MenuIndex].draws[i].icon, startX, startY + i * iconSize, g.statusIconColors[i], g.menuIconsFont, true, true);
         }
     }
     else if (menu[MenuIndex].type == 0) {
@@ -154,6 +155,15 @@ void Menu::render() {
             else RenderText(renderer, menu[MenuIndex].draws[i].name, startX, startY + i * iconSize + offsetY, g.menuText, g.menuFont, true, true);
         }
     }
+}
+
+menuItem& Menu::menuItemByID(int id) {
+    for (auto & item : menu) {
+        if (item.id == id) {
+            return item;
+        }
+    }
+    return menu[0];
 }
 
 int Menu::getMenuId() const

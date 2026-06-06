@@ -33,6 +33,24 @@
         "status": 1,
         "year": "2024 год"
     },
+    "Абсолютный дуэт": {
+        "addTime": 1780221032,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Школа",
+            "Городское фэнтези"
+        ],
+        "id": "25397",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/25397/mini_alt-c18762fbb4434f220f3059acbe811c5a.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2015 год"
+    },
     "Авантюристы, которые не верят в человечество, спасут мир": {
         "addTime": 4,
         "genres": [
@@ -188,10 +206,20 @@
         "opinion": 0,
         "status": 1
     },
-    "Баскетболл куроку": {
+    "Баскетбол Куроко": {
         "addTime": 14,
+        "genres": [
+            "Сёнен",
+            "Спорт",
+            "Школа",
+            "Командный спорт"
+        ],
+        "id": "11771",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/11771/mini_alt-ace9eadeb229f0071f4c88b51b7efbad.jpeg",
         "opinion": 2,
-        "status": 2
+        "service": "Shikimori",
+        "status": 2,
+        "year": "2012 год"
     },
     "Башня Бога": {
         "addTime": 15,
@@ -211,8 +239,18 @@
     },
     "Бездарная Нана": {
         "addTime": 1777326819,
+        "genres": [
+            "Сёнен",
+            "Триллер",
+            "Психологическое",
+            "Супер сила"
+        ],
+        "id": "41619",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/41619/mini_alt-d882689b5677db99b001a51a1e7a0857.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2020 год"
     },
     "Бек": {
         "addTime": 1777308236,
@@ -230,8 +268,16 @@
     },
     "Белого мага, изгнанного из команды героя, подобрал авантюрист ранга S: Этот белый маг слишком нестандартный": {
         "addTime": 17,
+        "genres": [
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "59424",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59424/mini_alt-855284d902ff50bfee88b94c427ad460.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Белоснежная симфония: Цвет влюблённых": {
         "addTime": 18,
@@ -262,6 +308,20 @@
         "addTime": 22,
         "opinion": 0,
         "status": 1
+    },
+    "Благоухающий цветок расцветает с достоинством": {
+        "addTime": 1780322367,
+        "genres": [
+            "Драма",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "59845",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59845/mini_alt-0d846ff83901afdfbee6b25b4ec66852.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Блич": {
         "addTime": 1777326405,
@@ -302,6 +362,21 @@
         "addTime": 28,
         "opinion": 0,
         "status": 1
+    },
+    "Брачный токсин": {
+        "addTime": 1780220621,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Комедия",
+            "Взрослые персонажи"
+        ],
+        "id": "62601",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/62601/mini_alt-58bcb3b6ef7ad3a11aefcc17c908837c.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2026 год"
     },
     "Бродяга Кэнсин": {
         "addTime": 29,
@@ -829,7 +904,7 @@
         ],
         "id": "11111",
         "miniPoster": "https://shikimori.io/uploads/poster/animes/11111/mini_alt-55dbcfd32de79593ecafd239e2b54bc5.jpeg",
-        "opinion": 3,
+        "opinion": 4,
         "service": "Shikimori",
         "status": 3,
         "year": "2012 год"
@@ -894,6 +969,11 @@
         "opinion": 0,
         "status": 1
     },
+    "Кастлвания": {
+        "addTime": 1780220565,
+        "opinion": 0,
+        "status": 1
+    },
     "Кизнайвер": {
         "addTime": 102,
         "opinion": 2,
@@ -923,6 +1003,22 @@
         "addTime": 106,
         "opinion": 0,
         "status": 1
+    },
+    "Ковбой Бибоп": {
+        "addTime": 1780220800,
+        "genres": [
+            "Экшен",
+            "Фантастика",
+            "Удостоено наград",
+            "Взрослые персонажи",
+            "Космос"
+        ],
+        "id": "1",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/1/mini_alt-2393d341358fdae1f1a7dcf3a778b217.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "1998 год"
     },
     "Когда плачут цикады": {
         "addTime": 107,
@@ -1119,6 +1215,21 @@
         "opinion": 0,
         "status": 1
     },
+    "Мегалобокс": {
+        "addTime": 1780220831,
+        "genres": [
+            "Фантастика",
+            "Спорт",
+            "Взрослые персонажи",
+            "Спортивные единоборства"
+        ],
+        "id": "36563",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/36563/mini_alt-a7d645a560366e5e81ecb64f8a291ca0.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2018 год"
+    },
     "Меж двух огней — Девушка и подруга детства": {
         "addTime": 1777318613,
         "opinion": 0,
@@ -1129,15 +1240,21 @@
         "opinion": 0,
         "status": 1
     },
-    "Меланхолии Харухи Мендельсон": {
-        "addTime": 133,
-        "opinion": 0,
-        "status": 1
-    },
-    "Меланхолия Харуки Судзумим": {
+    "Меланхолия Харухи Судзумии": {
         "addTime": 134,
+        "genres": [
+            "Комедия",
+            "Тайна",
+            "Фантастика",
+            "Удостоено наград",
+            "Школа"
+        ],
+        "id": "849",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/849/mini_alt-5fe15fee9353226154afe015337fa397.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2006 год"
     },
     "Меч Жёлтого императора. Бледное сияние": {
         "addTime": 1777308150,
@@ -1315,8 +1432,16 @@
     },
     "Непонятый мастер ателье: Обычная история о бывшем помощнике в отряде героя, чьи навыки, кроме боевых, достигли SSS-ранга": {
         "addTime": 152,
+        "genres": [
+            "Экшен",
+            "Фэнтези"
+        ],
+        "id": "60140",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/60140/mini_alt-cd268db6c28ad77cfb7e7b916102c362.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Непризнанный школой владыка демонов! Сильнейший владыка демонов в истории поступает в академию, переродившись своим потомком": {
         "addTime": 1777315773,
@@ -1422,6 +1547,22 @@
         "addTime": 1777309004,
         "opinion": 0,
         "status": 1
+    },
+    "Парень Арк": {
+        "addTime": 1780693455,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Ужасы",
+            "Фантастика"
+        ],
+        "id": "55",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/55/mini_alt-79e9639e81e30cf694cd7b3a46d125b9.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "1999 год"
     },
     "Патэма наоборот": {
         "addTime": 1777307698,
@@ -1545,8 +1686,23 @@
     },
     "Подручный Луизы-Нулизы": {
         "addTime": 184,
-        "opinion": 3,
-        "status": 3
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Комедия",
+            "Фэнтези",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Исэкай",
+            "Школа"
+        ],
+        "id": "1195",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/1195/mini_alt-4adb81707f33e049bf5fef566ab571cb.jpeg",
+        "opinion": 4,
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2006 год"
     },
     "Пожалуйста оденьтесь Такаминэ": {
         "addTime": 185,
@@ -1763,6 +1919,22 @@
         "opinion": 0,
         "status": 1
     },
+    "Самурай Чамплу": {
+        "addTime": 1780220879,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Комедия",
+            "Исторический",
+            "Самураи"
+        ],
+        "id": "205",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/205/mini_alt-5e84a3500823df0296c592f722bc2a8c.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2004 год"
+    },
     "Самый известный диктатор создает лучший клан в мире": {
         "addTime": 211,
         "opinion": 0,
@@ -1893,6 +2065,24 @@
         "opinion": 0,
         "status": 1
     },
+    "Стальной алхимик": {
+        "addTime": 1780767792,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Приключения",
+            "Драма",
+            "Фэнтези",
+            "Удостоено наград",
+            "Военное"
+        ],
+        "id": "121",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/121/mini_alt-35200290973c9c94b78268055d92bb37.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2003 год"
+    },
     "Старик из деревни становится Святым мечом": {
         "addTime": 227,
         "opinion": 0,
@@ -2004,6 +2194,25 @@
         "opinion": 0,
         "status": 1
     },
+    "Технолайз": {
+        "addTime": 1780220855,
+        "genres": [
+            "Авангард",
+            "Драма",
+            "Тайна",
+            "Фантастика",
+            "Триллер",
+            "Взрослые персонажи",
+            "Организованная преступность",
+            "Психологическое"
+        ],
+        "id": "26",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/26/mini_alt-fedc2eb5e14575b8ac7d03dc691e5ea9.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2003 год"
+    },
     "Тирания вооружённых девушек": {
         "addTime": 1777326454,
         "opinion": 0,
@@ -2029,7 +2238,7 @@
         "opinion": 0,
         "status": 1
     },
-    "ТораДора!": {
+    "Торадора!": {
         "addTime": 246,
         "genres": [
             "Драма",
@@ -2039,7 +2248,7 @@
         ],
         "id": "4224",
         "miniPoster": "https://shikimori.io/uploads/poster/animes/4224/mini_alt-e8e8a37aad1d0d12e47577b86efb1ee8.jpeg",
-        "opinion": 3,
+        "opinion": 4,
         "service": "Shikimori",
         "status": 3,
         "year": "2008 год"
@@ -2270,8 +2479,23 @@
     },
     "Эльфийская песнь": {
         "addTime": 281,
-        "opinion": 0,
-        "status": 1
+        "genres": [
+            "Сэйнэн",
+            "Экшен",
+            "Драма",
+            "Ужасы",
+            "Романтика",
+            "Триллер",
+            "Жестокость",
+            "Психологическое",
+            "Супер сила"
+        ],
+        "id": "226",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/226/mini_alt-02a695cfdbe4e96039ae28fb61844f8a.jpeg",
+        "opinion": 4,
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2004 год"
     },
     "Эрго прокси": {
         "addTime": 282,
@@ -2290,7 +2514,7 @@
         "miniPoster": "https://shikimori.io/uploads/poster/animes/48736/mini_alt-3ccdaa52da93ac0f97ee2d5721e1c868.jpeg",
         "opinion": 3,
         "service": "Shikimori",
-        "status": 2,
+        "status": 3,
         "year": "2022 год"
     },
     "Этот герой неуязвим, но очень осторожен": {
@@ -2307,6 +2531,21 @@
         "addTime": 1777328615,
         "opinion": 0,
         "status": 1
+    },
+    "Эхо террора": {
+        "addTime": 1780220754,
+        "genres": [
+            "Тайна",
+            "Триллер",
+            "Детектив",
+            "Психологическое"
+        ],
+        "id": "23283",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/23283/mini_alt-32d83afcaefa9e464e8770071ba9c6de.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
     },
     "Юна из гостиницы Юраги": {
         "addTime": 286,
@@ -2332,6 +2571,19 @@
         "addTime": 1777326790,
         "opinion": 0,
         "status": 1
+    },
+    "Я подружился со второй самой симпатичной девушкой в классе": {
+        "addTime": 1780221143,
+        "genres": [
+            "Романтика",
+            "Школа"
+        ],
+        "id": "56734",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/56734/mini_alt-909967589b6030f126bcc5e6ffdc9efe.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2026 год"
     },
     "Я прибрал к рукам девушку, которая потеряла своего жениха, и теперь я учу её всяким плохим вещам": {
         "addTime": 1777307542,
@@ -2362,6 +2614,24 @@
         "addTime": 1777310675,
         "opinion": 0,
         "status": 1
+    },
+    "Яркая Тихая": {
+        "addTime": 1780694673,
+        "genres": [
+            "Дзёсей",
+            "Драма",
+            "Романтика",
+            "Спорт",
+            "Любовный многоугольник",
+            "Школа",
+            "Стратегические игры"
+        ],
+        "id": "10800",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/10800/mini_alt-d8a60d6874358a5e4373698920995306.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2011 год"
     },
     "Ярость Бахамута: Генезис": {
         "addTime": 1777321163,

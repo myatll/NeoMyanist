@@ -7,6 +7,7 @@
 #include "src/PipeClient.h"
 #include "src/Search.h"
 #include "src/Menu.h"
+#include "src/ItemInfo.h"
 #include "src/List.h"
 #include "src/Filters.h"
 #include "src/Categories.h"
@@ -40,6 +41,7 @@ int main(int argc, char* argv[]) {
         {static_cast<Uint8>(settings["color"]["all_window_back"][0]), static_cast<Uint8>(settings["color"]["all_window_back"][1]), static_cast<Uint8>(settings["color"]["all_window_back"][2]), static_cast<Uint8>(settings["color"]["all_window_back"][3])},
         {static_cast<Uint8>(settings["color"]["background"][0]), static_cast<Uint8>(settings["color"]["background"][1]), static_cast<Uint8>(settings["color"]["background"][2]), static_cast<Uint8>(settings["color"]["background"][3])},
         {static_cast<Uint8>(settings["color"]["menu_background"][0]), static_cast<Uint8>(settings["color"]["menu_background"][1]), static_cast<Uint8>(settings["color"]["menu_background"][2]), static_cast<Uint8>(settings["color"]["menu_background"][3])},
+        {static_cast<Uint8>(settings["color"]["info_background"][0]), static_cast<Uint8>(settings["color"]["info_background"][1]), static_cast<Uint8>(settings["color"]["info_background"][2]), static_cast<Uint8>(settings["color"]["info_background"][3])},
         {static_cast<Uint8>(settings["color"]["item"][0]), static_cast<Uint8>(settings["color"]["item"][1]), static_cast<Uint8>(settings["color"]["item"][2]), static_cast<Uint8>(settings["color"]["item"][3])},
         {static_cast<Uint8>(settings["color"]["aimed_item"][0]), static_cast<Uint8>(settings["color"]["aimed_item"][1]), static_cast<Uint8>(settings["color"]["aimed_item"][2]), static_cast<Uint8>(settings["color"]["aimed_item"][3])},
         {static_cast<Uint8>(settings["color"]["selected_item"][0]), static_cast<Uint8>(settings["color"]["selected_item"][1]), static_cast<Uint8>(settings["color"]["selected_item"][2]), static_cast<Uint8>(settings["color"]["selected_item"][3])},
@@ -47,7 +49,9 @@ int main(int argc, char* argv[]) {
         {static_cast<Uint8>(settings["color"]["aimed_menu_item"][0]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][1]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][2]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][3])},
         {static_cast<Uint8>(settings["color"]["border"][0]), static_cast<Uint8>(settings["color"]["border"][1]), static_cast<Uint8>(settings["color"]["border"][2]), static_cast<Uint8>(settings["color"]["border"][3])},
         {},
+        {},
         {static_cast<Uint8>(settings["font_color"]["default"][0]), static_cast<Uint8>(settings["font_color"]["default"][1]), static_cast<Uint8>(settings["font_color"]["default"][2]), 255},
+        {static_cast<Uint8>(settings["font_color"]["genres"][0]), static_cast<Uint8>(settings["font_color"]["genres"][1]), static_cast<Uint8>(settings["font_color"]["genres"][2]), 255},
         {static_cast<Uint8>(settings["font_color"]["no_selected"][0]), static_cast<Uint8>(settings["font_color"]["no_selected"][1]), static_cast<Uint8>(settings["font_color"]["no_selected"][2]), 255},
         {static_cast<Uint8>(settings["font_color"]["menu"][0]), static_cast<Uint8>(settings["font_color"]["menu"][1]), static_cast<Uint8>(settings["font_color"]["menu"][2]), 255},
         {static_cast<Uint8>(settings["font_color"]["menu_unavailable"][0]), static_cast<Uint8>(settings["font_color"]["menu_unavailable"][1]), static_cast<Uint8>(settings["font_color"]["menu_unavailable"][2]), 255},
@@ -62,8 +66,11 @@ int main(int argc, char* argv[]) {
         settings, state, e
     };
 
-    for (auto & i : settings["icon_colors"]) {
-        gInfo.iconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });
+    for (auto & i : settings["icon_colors"]["opinion"]) {
+        gInfo.opinionIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });
+    }
+    for (auto & i : settings["icon_colors"]["status"]) {
+        gInfo.statusIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });
     }
 
     const char* pipeName = R"(\\.\pipe\MyPipe)";
@@ -89,6 +96,7 @@ int main(int argc, char* argv[]) {
     STARTUPINFOA si = { sizeof(si) };
     PROCESS_INFORMATION pi;
 
+    // ---------------------------------
     // std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
     std::string cmd = "find.exe";
 
@@ -100,6 +108,7 @@ int main(int argc, char* argv[]) {
         std::cout << "Failed to start Python\n";
         return 1;
         }
+    // ----------------------------------------
 
     // ждем подключения
     ConnectNamedPipe(hPipe, NULL);
@@ -118,6 +127,8 @@ int main(int argc, char* argv[]) {
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     gInfo.setRenderer(renderer);
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
+
     AsyncTextureLoader tloader(renderer);
     tloader.Start();
 
@@ -125,19 +136,26 @@ int main(int argc, char* argv[]) {
     bg.loadOptImage(settings["background"]);
     gInfo.setBackground(&bg);
 
+    SDL_Surface* surface = IMG_Load("../data/loading.png");
+    gInfo.loadindImg = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+
     Menu menu(renderer, settings, gInfo);
 
     List list(gInfo, menu, client, tloader);
     Search search(gInfo, menu, list, client);
     Filters filters(gInfo, menu, list, search);
+    ItemInfo itemInfo(gInfo, menu, list);
     list.setSearchIter(&search);
     list.setFiltersIter(&filters);
+    list.setInfoIter(&itemInfo);
     Categories categories(gInfo, menu, list, search);
 
     bg.generatePattern(settings["background_pattern"]["type"], settings["background_pattern"]["amplitude"], settings["background_pattern"]["frequency1"], settings["background_pattern"]["frequency2"], settings["background_pattern"]["noise_intensity"]);
     bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
 
-    list.setPos({ 30, 110, WINDOW_WIDTH - 280, WINDOW_HEIGHT - 140 });
+    list.setPos({ 360, 110, WINDOW_WIDTH - 610, WINDOW_HEIGHT - 140 });
+    itemInfo.setPos({ 30, 110, 300, WINDOW_HEIGHT - 140 });
     search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
     filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
     categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
@@ -147,8 +165,6 @@ int main(int argc, char* argv[]) {
     search.setCategIter(&categories);
     search.setFilterIter(&filters);
 
-    bool drawCategories = true;
-
     bool running = true;
     while (running) {
         Uint32 frameStart = SDL_GetTicks(); // Время начала кадра
@@ -157,13 +173,44 @@ int main(int argc, char* argv[]) {
             menu.handleEvent();
             search.handle();
             list.handle();
-            if (drawCategories) {
-                categories.handle();
-                filters.handle();
-            }
+            if (gInfo.drawInfo) itemInfo.handle();
+            if (gInfo.drawCategories) categories.handle();
+            if (gInfo.drawFilters) filters.handle();
+
 
             if (e.type == SDL_QUIT) {
                 running = false;
+            } else if (e.type == SDL_KEYDOWN) {
+                if (e.key.keysym.sym == SDLK_F5) {
+                    file.open("../data/theme.json");
+                    file >> settings;
+                    file.close();
+
+                    file.open("../data/state.json");
+                    file >> state;
+                    file.close();
+
+                    gInfo.allWindowBack = {static_cast<Uint8>(settings["color"]["all_window_back"][0]), static_cast<Uint8>(settings["color"]["all_window_back"][1]), static_cast<Uint8>(settings["color"]["all_window_back"][2]), static_cast<Uint8>(settings["color"]["all_window_back"][3])};
+                    gInfo.background = {static_cast<Uint8>(settings["color"]["background"][0]), static_cast<Uint8>(settings["color"]["background"][1]), static_cast<Uint8>(settings["color"]["background"][2]), static_cast<Uint8>(settings["color"]["background"][3])};
+                    gInfo.menuBackground = {static_cast<Uint8>(settings["color"]["menu_background"][0]), static_cast<Uint8>(settings["color"]["menu_background"][1]), static_cast<Uint8>(settings["color"]["menu_background"][2]), static_cast<Uint8>(settings["color"]["menu_background"][3])};
+                    gInfo.infoBackground = {static_cast<Uint8>(settings["color"]["info_background"][0]), static_cast<Uint8>(settings["color"]["info_background"][1]), static_cast<Uint8>(settings["color"]["info_background"][2]), static_cast<Uint8>(settings["color"]["info_background"][3])};
+                    gInfo.item = {static_cast<Uint8>(settings["color"]["item"][0]), static_cast<Uint8>(settings["color"]["item"][1]), static_cast<Uint8>(settings["color"]["item"][2]), static_cast<Uint8>(settings["color"]["item"][3])};
+                    gInfo.aimedItem = {static_cast<Uint8>(settings["color"]["aimed_item"][0]), static_cast<Uint8>(settings["color"]["aimed_item"][1]), static_cast<Uint8>(settings["color"]["aimed_item"][2]), static_cast<Uint8>(settings["color"]["aimed_item"][3])};
+                    gInfo.selectedItem = {static_cast<Uint8>(settings["color"]["selected_item"][0]), static_cast<Uint8>(settings["color"]["selected_item"][1]), static_cast<Uint8>(settings["color"]["selected_item"][2]), static_cast<Uint8>(settings["color"]["selected_item"][3])};
+                    gInfo.selectedFilter = {static_cast<Uint8>(settings["color"]["selected_filter"][0]), static_cast<Uint8>(settings["color"]["selected_filter"][1]), static_cast<Uint8>(settings["color"]["selected_filter"][2]), static_cast<Uint8>(settings["color"]["selected_filter"][3])};
+                    gInfo.aimedMenuItem = {static_cast<Uint8>(settings["color"]["aimed_menu_item"][0]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][1]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][2]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][3])};
+                    gInfo.border = {static_cast<Uint8>(settings["color"]["border"][0]), static_cast<Uint8>(settings["color"]["border"][1]), static_cast<Uint8>(settings["color"]["border"][2]), static_cast<Uint8>(settings["color"]["border"][3])};
+                    gInfo.defaultText = {static_cast<Uint8>(settings["font_color"]["default"][0]), static_cast<Uint8>(settings["font_color"]["default"][1]), static_cast<Uint8>(settings["font_color"]["default"][2]), 255};
+                    gInfo.genresText = {static_cast<Uint8>(settings["font_color"]["genres"][0]), static_cast<Uint8>(settings["font_color"]["genres"][1]), static_cast<Uint8>(settings["font_color"]["genres"][2]), 255};
+                    gInfo.noSelectedText = {static_cast<Uint8>(settings["font_color"]["no_selected"][0]), static_cast<Uint8>(settings["font_color"]["no_selected"][1]), static_cast<Uint8>(settings["font_color"]["no_selected"][2]), 255};
+                    gInfo.menuText = {static_cast<Uint8>(settings["font_color"]["menu"][0]), static_cast<Uint8>(settings["font_color"]["menu"][1]), static_cast<Uint8>(settings["font_color"]["menu"][2]), 255};
+                    gInfo.menuUnavailableText = {static_cast<Uint8>(settings["font_color"]["menu_unavailable"][0]), static_cast<Uint8>(settings["font_color"]["menu_unavailable"][1]), static_cast<Uint8>(settings["font_color"]["menu_unavailable"][2]), 255};
+
+                    gInfo.opinionIconColors.clear();
+                    gInfo.statusIconColors.clear();
+                    for (auto & i : settings["icon_colors"]["opinion"]) {gInfo.opinionIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });}
+                    for (auto & i : settings["icon_colors"]["status"]) {gInfo.statusIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });}
+                }
             }
             else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
                 SDL_GetWindowSize(window, &WINDOW_WIDTH, &WINDOW_HEIGHT);
@@ -171,17 +218,13 @@ int main(int argc, char* argv[]) {
 
                 menu.setWinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-                drawCategories = WINDOW_WIDTH > 900;
-                if (drawCategories) {
-                    search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
-                    categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
-                    list.setPos({ 30, 110, WINDOW_WIDTH - 280, WINDOW_HEIGHT - 140 });
-                    filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
-                } else {
-                    search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
-                    list.setPos({ 30, 110, WINDOW_WIDTH - 60, WINDOW_HEIGHT - 140 });
+                gInfo.drawCategories = WINDOW_WIDTH > 900;
+                if (!gInfo.drawCategories) {
+                    gInfo.drawFilters = false;
+                    gInfo.drawInfo = false;
                 }
-
+                filters.updateDrawState();
+                gInfo.needReSize = true;
             }
         }
 
@@ -193,21 +236,33 @@ int main(int argc, char* argv[]) {
         SDL_Rect fillRect = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
         SDL_RenderFillRect(renderer, &fillRect);
 
+        if (gInfo.needReSize) {
+            bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
+            if (gInfo.drawInfo) itemInfo.setPos({ 30, 110, 300, WINDOW_HEIGHT - 140 });
+
+            if (gInfo.drawCategories) {
+                categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
+                search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
+            } else search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
+
+            if (gInfo.drawFilters) filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
+
+            list.setPos({30 + gInfo.drawInfo * 330, 110, WINDOW_WIDTH - 60 - gInfo.drawInfo * 330 - gInfo.drawFilters * 220, WINDOW_HEIGHT - 140 });
+            gInfo.needReSize = false;
+        }
 
         list.update();
         search.update();
-        if (drawCategories) {
-            categories.update();
-            filters.update();
-        }
-
+        if (gInfo.drawInfo) itemInfo.update();
+        if (gInfo.drawCategories) categories.update();
+        if (gInfo.drawFilters) filters.update();
 
         search.render();
         list.render();
-        if (drawCategories) {
-            categories.render();
-            filters.render();
-        }
+        if (gInfo.drawInfo) itemInfo.render();
+        if (gInfo.drawCategories) categories.render();
+        if (gInfo.drawFilters) filters.render();
+
 
         menu.render();
 

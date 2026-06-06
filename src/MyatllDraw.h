@@ -11,7 +11,7 @@
 #include <string>
 
 void RenderText(SDL_Renderer *renderer, const std::string &text, int x, int y,
-                SDL_Color color, TTF_Font *useFont, bool x_centered = false, bool y_centered = false,
+                SDL_Color color, TTF_Font *useFont, int xDeviation = 0, int yDeviation = 0,
                 int maxWidth = -1);
 
 void RenderText_Wrapped(SDL_Renderer *renderer, const std::string &text, int x, int y, SDL_Color color,

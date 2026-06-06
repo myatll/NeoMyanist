@@ -8,9 +8,9 @@
 #include <cmath>
 #include <SDL.h>
 
-void RenderText(SDL_Renderer *renderer, const std::string &text, int x, int y,
-                SDL_Color color, TTF_Font *useFont, bool x_centered, bool y_centered,
-                int maxWidth) {
+void RenderText(SDL_Renderer *renderer, const std::string &text, const int x, const int y,
+                const SDL_Color color, TTF_Font *useFont, int xDeviation, int yDeviation,
+                const int maxWidth) {
     std::string renderedText = text;
 
     // Если задано ограничение по ширине
@@ -63,8 +63,10 @@ void RenderText(SDL_Renderer *renderer, const std::string &text, int x, int y,
     }
 
     SDL_Rect rect = {x, y, surface->w, surface->h};
-    if (x_centered) rect.x = rect.x - rect.w / 2;
-    if (y_centered) rect.y = rect.y - rect.h / 2;
+    if (xDeviation == 1) rect.x = rect.x - rect.w / 2;
+    else if (xDeviation == -1) rect.x = rect.x - rect.w;
+    if (yDeviation == 1) rect.y = rect.y - rect.h / 2;
+    else if (yDeviation == -1) rect.y = rect.y - rect.h;
 
 
     SDL_RenderCopy(renderer, texture, nullptr, &rect);

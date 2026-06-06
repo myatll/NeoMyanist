@@ -166,8 +166,8 @@ void Search::render() {
             if (posRect.w - 25 - 15 <= mouseX && mouseX <= posRect.w - 25 + 15) DrawCircle(g.renderer, posRect.w - 25, posRect.h >> 1, radius);
         }
 
-        RenderText(g.renderer, g.settings["icon_names"]["opinion"][opinion], posRect.w - 55, posRect.h >> 1, g.iconColors[opinion], g.iconsFont, true, true);
-        RenderText(g.renderer, g.settings["icon_names"]["status"][status], posRect.w - 25, posRect.h >> 1, g.iconColors[status], g.iconsFont, true, true);
+        RenderText(g.renderer, g.settings["icon_names"]["opinion"][opinion], posRect.w - 55, posRect.h >> 1, g.opinionIconColors[opinion], g.iconsFont, true, true);
+        RenderText(g.renderer, g.settings["icon_names"]["status"][status], posRect.w - 25, posRect.h >> 1, g.statusIconColors[status], g.iconsFont, true, true);
 
         RenderText(g.renderer, "database_search", 25, posRect.h >> 1, {g.noSelectedText.r, g.noSelectedText.r, g.noSelectedText.r, static_cast<Uint8>(200 - modeAnim + 50)}, g.iconsFont, true, true);
         RenderText(g.renderer, "format_list_bulleted_add", 55, posRect.h >> 1, {g.noSelectedText.r, g.noSelectedText.r, g.noSelectedText.r, static_cast<Uint8>(modeAnim + 50)}, g.iconsFont, true, true);
@@ -188,7 +188,6 @@ void Search::setPos(SDL_Rect newPos) {
     SDL_SetTextureBlendMode(txtr, SDL_BLENDMODE_BLEND);
     updateTxtr = true;
     search.setSize({posRect.x + 90, posRect.y + (posRect.h >> 1) - (TTF_FontHeight(g.defaultFont) >> 1), posRect.w - 180, static_cast<int>(TTF_FontHeight(g.defaultFont) * 1.5)});
-
 }
 
 void Search::handle() {

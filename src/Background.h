@@ -23,6 +23,7 @@ private:
     SDL_Renderer* renderer;
 
     SDL_Rect posRect;
+    bool needFilter = true;
 
     static void put_pixel(const SDL_Surface* surface, int x, int y, Uint32 pixel);
 

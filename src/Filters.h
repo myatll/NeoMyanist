@@ -55,6 +55,7 @@ public:
     void setPos(SDL_Rect newPos);
     void handle();
     void update();
+    void updateDrawState() const;
 };
 
 

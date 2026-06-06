@@ -27,12 +27,13 @@ using defJson = nlohmann::ordered_json;
 class Search;
 class Filters;
 class Categories;
+class ItemInfo;
 class List {
 private:
     SDL_Texture* txtr;
-    SDL_Texture* loadindImg;
 
     Categories* categ;
+    ItemInfo* iinfo;
     Filters* filt;
     Search* search;
 
@@ -64,7 +65,7 @@ private:
 
     struct SearchTipsDrawItem {
         bool miniPosterLoaded = false;
-        bool miniPosterIsHozisontal = false;
+        double miniPosterAspect = false;
         SDL_Texture* miniPoster;
         std::string name;
         std::string genres;
@@ -83,6 +84,7 @@ public:
 
     void setSearchIter(Search* searchIter);
     void setCategIter(Categories* categIter);
+    void setInfoIter(ItemInfo* iinfoIter);
     void setFiltersIter(Filters* filtersIter);
     void returnEditedItem(std::string& oldName, std::string newName, json& currentItem);
     void addItem(std::string name, json& currentItem);
