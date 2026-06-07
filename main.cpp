@@ -97,8 +97,8 @@ int main(int argc, char* argv[]) {
     PROCESS_INFORMATION pi;
 
     // ---------------------------------
-    // std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
-    std::string cmd = "find.exe";
+    std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
+    // std::string cmd = "find.exe";
 
     if (!CreateProcessA(
         NULL,
@@ -214,7 +214,7 @@ int main(int argc, char* argv[]) {
             }
             else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
                 SDL_GetWindowSize(window, &WINDOW_WIDTH, &WINDOW_HEIGHT);
-                bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
+                // bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
 
                 menu.setWinSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -236,6 +236,12 @@ int main(int argc, char* argv[]) {
         SDL_Rect fillRect = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
         SDL_RenderFillRect(renderer, &fillRect);
 
+        list.update();
+        search.update();
+        if (gInfo.drawInfo) itemInfo.update();
+        if (gInfo.drawCategories) categories.update();
+        if (gInfo.drawFilters) filters.update();
+
         if (gInfo.needReSize) {
             bg.setPos({0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
             if (gInfo.drawInfo) itemInfo.setPos({ 30, 110, 300, WINDOW_HEIGHT - 140 });
@@ -243,7 +249,7 @@ int main(int argc, char* argv[]) {
             if (gInfo.drawCategories) {
                 categories.setPos({ WINDOW_WIDTH - 220, 30, 190, 50 });
                 search.setPos({ 30, 30, WINDOW_WIDTH - 280, 50 });
-            } else search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
+             } else search.setPos({ 30, 30, WINDOW_WIDTH - 60, 50 });
 
             if (gInfo.drawFilters) filters.setPos({ WINDOW_WIDTH - 220, 110, 190, WINDOW_HEIGHT - 140 });
 
@@ -251,23 +257,13 @@ int main(int argc, char* argv[]) {
             gInfo.needReSize = false;
         }
 
-        list.update();
-        search.update();
-        if (gInfo.drawInfo) itemInfo.update();
-        if (gInfo.drawCategories) categories.update();
-        if (gInfo.drawFilters) filters.update();
-
         search.render();
         list.render();
         if (gInfo.drawInfo) itemInfo.render();
         if (gInfo.drawCategories) categories.render();
         if (gInfo.drawFilters) filters.render();
 
-
         menu.render();
-
-        // RenderText(renderer, std::to_string(WINDOW_WIDTH), 20, 20, gInfo.selectedItem, gInfo.iconsFont, false, true);
-
         SDL_RenderPresent(renderer);
 
         if (SDL_GetTicks() - frameStart < 16) {

@@ -39,7 +39,8 @@ private:
 
     json data;
 
-    int startDrawIndex;
+    int listStartDrawIndex;
+    int tipsStartDrawIndex;
     int currentIndex;
     int changeItemIndex;
     double scrollAnim;
@@ -94,12 +95,12 @@ public:
     void setPos(SDL_Rect newPos);
     void handle();
 
-    void loadCateg(const std::string path);
+    void loadCateg(const std::string& path);
     void updateList(const std::string& name, const json& currentItem);
     void drawReset();
 
 private:
-    std::string toLower(const std::string& str);
+    static std::string toLower(const std::string& str);
 };
 
 

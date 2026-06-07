@@ -199,17 +199,29 @@ void Search::handle() {
         updateTxtr = true;
         if (g.e.type == SDL_MOUSEBUTTONUP) {
             // if (e.button.button == SDL_BUTTON_RIGHT) {
-                 if ((posRect.h >> 1) - 15 <= mouseY && mouseY <= (posRect.h >> 1) + 15) {
-                     if (25 - 15 <= mouseX && mouseX <= 25 + 15) {
+                 if (10 <= mouseY && mouseY <= posRect.h - 10) {
+                     if (25 - 25 <= mouseX && mouseX <= 25 + 15) {
                          mode = true; opinion = 0; status = 0;
                          currentItem["status"] = 0; currentItem["opinion"] = 0;
                          search.setText("");
-                         filt->updateAvailableFilters({});
-                         list.updateList("", {});
+                         // filt->updateAvailableFilters({});
+                         list.drawReset();
+                         filt->updateDrawState();
                          if (isChange) isChange = false;
                          resetCurrentItem();
                      }
-                     if (55 - 15 <= mouseX && mouseX <= 55 + 15) { mode = false; opinion = 0; status = 1; currentItem["status"] = 1; currentItem["opinion"] = 0; filt->updateAvailableFilters({}); list.updateTxtr = true; list.drawReset(); resetCurrentItem();}
+                     if (55 - 15 <= mouseX && mouseX <= 55 + 25) {
+                         mode = false;
+                         opinion = 0;
+                         status = 1;
+                         currentItem["status"] = 1; currentItem["opinion"] = 0;
+                         // filt->updateAvailableFilters({});
+                         g.drawFilters = false;
+                         g.needReSize = true;
+                         list.updateTxtr = true;
+                         list.drawReset();
+                         resetCurrentItem();
+                     }
                      if (posRect.w - 55 - 15 <= mouseX && mouseX <= posRect.w - 55 + 15) menu.setMenu(10, posRect.x + posRect.w - 55, posRect.y + (posRect.h >> 1));
                      if (posRect.w - 25 - 15 <= mouseX && mouseX <= posRect.w - 25 + 15) menu.setMenu(15, posRect.x + posRect.w - 25, posRect.y + (posRect.h >> 1));
                  }

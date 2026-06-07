@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
+#include <vector>
 #include <iostream>
 
 constexpr static auto block_sz = 100;

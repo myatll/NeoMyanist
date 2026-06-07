@@ -34,7 +34,7 @@ void Filters::updateAvailableFilters(const std::map<std::string, int> &filters) 
             return a.second > b.second;
         });
         availableFilters = vec;
-        if (g.drawCategories) {
+        if (g.drawCategories and search.mode) {
             g.drawFilters = true;
             g.needReSize = true;
         }
@@ -156,5 +156,6 @@ void Filters::update() {
 }
 
 void Filters::updateDrawState() const {
-    g.drawFilters = (g.drawCategories and !availableFilters.empty());
+    g.drawFilters = (g.drawCategories and !availableFilters.empty() and search.mode);
+    g.needReSize = true;
 }

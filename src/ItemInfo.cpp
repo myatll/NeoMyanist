@@ -133,6 +133,15 @@ void ItemInfo::render() {
 
                 SDL_FreeSurface(surface); SDL_DestroyTexture(texture);
             }
+            if (currentItem.contains("otherNames")) {
+                surface = TTF_RenderUTF8_Blended_Wrapped(g.lowFont, currentItem["otherNames"].get<std::string>().c_str(), g.noSelectedText, posRect.w - 20);
+                texture = SDL_CreateTextureFromSurface(g.renderer, surface);
+                rect = {10, subRect.y + (TTF_FontHeight(g.defaultFont) >> 1), surface->w, surface->h};
+                subRect.y = rect.y + rect.h;
+                SDL_RenderCopy(g.renderer, texture, nullptr, &rect);
+
+                SDL_FreeSurface(surface); SDL_DestroyTexture(texture);
+            }
             if (currentItem.contains("description")) {
                 surface = TTF_RenderUTF8_Blended_Wrapped(g.lowFont, currentItem["description"].get<std::string>().c_str(), g.noSelectedText, posRect.w - 20);
                 texture = SDL_CreateTextureFromSurface(g.renderer, surface);

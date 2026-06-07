@@ -10,7 +10,7 @@
 
 List::List(Global& gInfo, Menu& mnu, PipeClient& clnt, AsyncTextureLoader& tldr) :
     txtr(nullptr), g(gInfo), menu(mnu), client(clnt), tloader(tldr),
-    updateTxtr(true), posRect{}, startDrawIndex(0), scrollAnim(0), currentIndex(-1), categ(nullptr),
+    updateTxtr(true), posRect{}, listStartDrawIndex(0), tipsStartDrawIndex(0), scrollAnim(0), currentIndex(-1), categ(nullptr),
     mouseX(0), mouseY(0), ctrl(false), needSave(false), MenuID(-1)
 {
 
@@ -65,10 +65,10 @@ void List::returnEditedItem(std::string &oldName, std::string newName, json& cur
     for (std::vector<listDrawItem>::size_type i = 0; i != list.size(); ++i) {
         if (list[i].name == newName) {
             if (i > 1) {
-                startDrawIndex = i - 1;
+                listStartDrawIndex = i - 1;
                 scrollAnim = -fullItemSize;
             }
-            else startDrawIndex = 0;
+            else listStartDrawIndex = 0;
             break;
         }
     }
@@ -88,10 +88,10 @@ void List::addItem(std::string name, json& currentItem) {
     for (std::vector<listDrawItem>::size_type i = 0; i != list.size(); ++i) {
         if (list[i].name == name) {
             if (i > 1) {
-                startDrawIndex = i - 1;
+                listStartDrawIndex = i - 1;
                 scrollAnim = -fullItemSize;
             }
-            else startDrawIndex = 0;
+            else listStartDrawIndex = 0;
             break;
         }
     }
@@ -116,7 +116,7 @@ void List::render() {
             currentIndex = -1;
             int drawElemNum = static_cast<int>(scrollAnim / fullItemSize) - 1;
             while (drawElemNum*fullItemSize - static_cast<int>(scrollAnim) < posRect.h) {
-                int drawElemIndex = drawElemNum + startDrawIndex;
+                int drawElemIndex = drawElemNum + listStartDrawIndex;
                 if (drawElemIndex >= 0) {
                     if (drawElemIndex >= list.size()) break;
                     int drawOffset = drawElemNum*fullItemSize - static_cast<int>(scrollAnim) + (itemSize >> 1);
@@ -153,7 +153,7 @@ void List::render() {
             currentIndex = -1;
             int drawElemNum = static_cast<int>(scrollAnim / fullTipSize) - 1;
             while (drawElemNum*fullTipSize - static_cast<int>(scrollAnim) < posRect.h) {
-                int drawElemIndex = drawElemNum + startDrawIndex;
+                int drawElemIndex = drawElemNum + tipsStartDrawIndex;
                 if (drawElemIndex >= 0) {
                     if (drawElemIndex >= tips.size()) break;
                     int drawOffset = drawElemNum*fullTipSize - static_cast<int>(scrollAnim) + (tipSize >> 1);
@@ -237,7 +237,7 @@ void List::update() {
                     if (tip.miniPosterLoaded) SDL_DestroyTexture(tip.miniPoster);
                 }
                 tips = newTips;
-                startDrawIndex = 0;
+                tipsStartDrawIndex = 0;
                 updateTxtr = true;
             } else if (received.contains("fullInfo")) {
                 tloader.LoadTexture(received["fullInfo"]["poster"], 0 - std::stoi(received["fullInfo"]["id"].get<std::string>()));
@@ -360,28 +360,28 @@ void List::handle() {
         if (g.e.type == SDL_MOUSEWHEEL) {
             if (search->mode) {
                 if (g.e.wheel.y > 0) {
-                    if (startDrawIndex - g.e.wheel.y > -1) {
+                    if (listStartDrawIndex - g.e.wheel.y > -1) {
                         scrollAnim += g.e.wheel.y * fullItemSize;
-                        startDrawIndex -= g.e.wheel.y;
+                        listStartDrawIndex -= g.e.wheel.y;
                     }
                 }
                 else if (g.e.wheel.y < 0) {
-                    if (startDrawIndex - g.e.wheel.y + posRect.h / fullItemSize < list.size() +  1) {
+                    if (listStartDrawIndex - g.e.wheel.y + posRect.h / fullItemSize < list.size() +  1) {
                         scrollAnim += g.e.wheel.y * fullItemSize;
-                        startDrawIndex -= g.e.wheel.y;
+                        listStartDrawIndex -= g.e.wheel.y;
                     }
                 }
             } else {
                 if (g.e.wheel.y > 0) {
-                    if (startDrawIndex - g.e.wheel.y > -1) {
+                    if (tipsStartDrawIndex - g.e.wheel.y > -1) {
                         scrollAnim += g.e.wheel.y * fullTipSize;
-                        startDrawIndex -= g.e.wheel.y;
+                        tipsStartDrawIndex -= g.e.wheel.y;
                     }
                 }
                 else if (g.e.wheel.y < 0) {
-                    if (startDrawIndex - g.e.wheel.y + posRect.h / fullTipSize < tips.size() +  1) {
+                    if (tipsStartDrawIndex - g.e.wheel.y + posRect.h / fullTipSize < tips.size() +  1) {
                         scrollAnim += g.e.wheel.y * fullTipSize;
-                        startDrawIndex -= g.e.wheel.y;
+                        tipsStartDrawIndex -= g.e.wheel.y;
                     }
                 }
             }
@@ -405,7 +405,7 @@ void List::handle() {
 }
 
 
-void List::loadCateg(const std::string path) {
+void List::loadCateg(const std::string& path) {
     std::ifstream file(path);
     data = json::parse(file);
     file.close();
@@ -416,7 +416,7 @@ void List::loadCateg(const std::string path) {
 }
 
 void List::updateList(const std::string &name, const json &currentItem) {
-    startDrawIndex = 0;
+    listStartDrawIndex = 0;
     int statusFilter = 0;
     int opinionFilter = 0;
     int drawFilter = 0;
@@ -448,7 +448,9 @@ void List::updateList(const std::string &name, const json &currentItem) {
                             if (ITgenre == genre) contains = true;
                         }
                         if (!contains) fullContains = false;
-                    } else fullContains = false;
+                    } else {
+                        fullContains = false;
+                    }
                 }
                 if (!fullContains) add_flag = false;
             }
@@ -494,7 +496,7 @@ void List::updateList(const std::string &name, const json &currentItem) {
 void List::drawReset() {
     tips.clear();
     updateTxtr = true;
-    startDrawIndex = 0;
+    tipsStartDrawIndex = 0;
 }
 
 std::string List::toLower(const std::string &str) {

@@ -5,7 +5,7 @@
 #include "Background.h"
 
 Background::Background(SDL_Renderer* rnd) :
-    x_offset{0}, y_offset{0}, renderer(rnd)
+    x_offset{0}, y_offset{0}, renderer(rnd), background(nullptr), crop_img(nullptr), load_img(nullptr)
 {
 
 }
@@ -23,15 +23,15 @@ void Background::loadOptImage(const std::string &filepath) {
 
 void Background::cropToAspectRatio() {
 
-    float imgAspect = (float)load_img->w / load_img->h;
-    float targetAspect = (float)posRect.w / posRect.h;
+    const float imgAspect = static_cast<float>(load_img->w) / load_img->h;
+    const float targetAspect = static_cast<float>(posRect.w) / posRect.h;
 
     SDL_Surface* resizedSurface = nullptr;
     SDL_Rect cropRect = { 0, 0, posRect.w, posRect.h };
 
     if (targetAspect > imgAspect) {
         // Окно шире - обрезаем по вертикали
-        int newHeight = (int)(posRect.w / imgAspect);
+        const int newHeight =  static_cast<int>(posRect.w / imgAspect);
         resizedSurface = SDL_CreateRGBSurfaceWithFormat(
                 0, posRect.w, newHeight, 32, load_img->format->format
         );
@@ -87,7 +87,9 @@ void Background::cropToAspectRatio() {
 
     // Освобождаем временную поверхность
     SDL_FreeSurface(resizedSurface);
+    if (crop_img) SDL_FreeSurface(crop_img);
     crop_img = croppedSurface;
+    if (background) SDL_DestroyTexture(background);
     background = SDL_CreateTextureFromSurface(renderer, crop_img);
 }
 
@@ -123,8 +125,8 @@ void Background::generatePattern(int index_, float amplitude, float frequency1, 
                 float dy = y - block_sz / 2;
                 float distance = sqrt(dx * dx + dy * dy);
                 float angle = atan2(dy, dx);
-                x_offset[x][y] = int(cos(angle + distance * 0.1f) * amplitude);
-                y_offset[x][y] = int(sin(angle + distance * 0.1f) * amplitude);
+                x_offset[x][y] = static_cast<int8_t>(cos(angle + distance * 0.1f) * amplitude);
+                y_offset[x][y] = static_cast<int8_t>(sin(angle + distance * 0.1f) * amplitude);
             }
         }
     }
@@ -176,9 +178,8 @@ void Background::setFilter(SDL_Rect rct, int radius, bool relative, bool unSafe)
     // Ограничиваем радиус скругления
     radius = std::min(radius, std::min(rct.w, rct.h) / 2);
 
-    // Создаем временный буфер для хранения изменений
-    Uint32* buffer = (Uint32*)malloc(rct.w * rct.h * sizeof(Uint32));
-    if (!buffer) return;
+    // Безопасное выделение памяти через std::vector (автоматически освободится)
+    std::vector<Uint32> buffer(rct.w * rct.h);
 
     // Блокируем поверхность
     if (SDL_MUSTLOCK(crop_img)) {
@@ -204,65 +205,53 @@ void Background::setFilter(SDL_Rect rct, int radius, bool relative, bool unSafe)
         int centerX, centerY;
 
         // Проверяем углы
-        // Левый верхний угол
         if (x < radius && y < radius) {
             centerX = radius;
             centerY = radius;
             return (x - centerX) * (x - centerX) + (y - centerY) * (y - centerY) <= radius * radius;
         }
-            // Правый верхний угол
         else if (x > rct.w - radius - 1 && y < radius) {
             centerX = rct.w - radius - 1;
             centerY = radius;
             return (x - centerX) * (x - centerX) + (y - centerY) * (y - centerY) <= radius * radius;
         }
-            // Левый нижний угол
         else if (x < radius && y > rct.h - radius - 1) {
             centerX = radius;
             centerY = rct.h - radius - 1;
             return (x - centerX) * (x - centerX) + (y - centerY) * (y - centerY) <= radius * radius;
         }
-            // Правый нижний угол
         else if (x > rct.w - radius - 1 && y > rct.h - radius - 1) {
             centerX = rct.w - radius - 1;
             centerY = rct.h - radius - 1;
             return (x - centerX) * (x - centerX) + (y - centerY) * (y - centerY) <= radius * radius;
         }
 
-        return true; // Не в угловой области - применяем фильтр
+        return true;
     };
 
     // Теперь обрабатываем пиксели, используя исходные данные из буфера
     for (int i = 0; i < rct.h; i++) {
         for (int j = 0; j < rct.w; j++) {
-            // Проверяем, нужно ли применять фильтр к этому пикселю
             if (radius != 0 and !isInRoundedArea(j, i)) {
-                continue; // Пропускаем пиксели в скругленных углах
+                continue;
             }
 
             int surface_x = rct.x + j;
             int surface_y = rct.y + i;
 
-            // Вычисляем индексы для массивов смещений
             int offset_x_idx = j % block_sz;
             int offset_y_idx = i % block_sz;
 
-            // Получаем смещения
             int dx = x_offset[offset_x_idx][offset_y_idx];
             int dy = y_offset[offset_x_idx][offset_y_idx];
 
-            // Вычисляем координаты пикселя-источника в буфере
             int src_x_in_buffer = j + dx;
             int src_y_in_buffer = i + dy;
 
-            // Проверяем границы в буфере
             if ((src_x_in_buffer >= 0 && src_x_in_buffer < rct.w &&
                 src_y_in_buffer >= 0 && src_y_in_buffer < rct.h) or unSafe) {
 
-                // Получаем цвет из буфера (исходные данные)
                 Uint32 source_color = buffer[src_y_in_buffer * rct.w + src_x_in_buffer];
-
-                // Записываем результат на поверхность
                 put_pixel(crop_img, surface_x, surface_y, source_color);
             }
         }
@@ -273,11 +262,14 @@ void Background::setFilter(SDL_Rect rct, int radius, bool relative, bool unSafe)
         SDL_UnlockSurface(crop_img);
     }
 
-    free(buffer);
+    // [ИСПРАВЛЕНИЕ УТЕЧКИ]: Уничтожаем старую текстуру перед созданием новой
+    if (background != nullptr) {
+        SDL_DestroyTexture(background);
+        background = nullptr;
+    }
     background = SDL_CreateTextureFromSurface(renderer, crop_img);
 }
 
-// Альтернативная версия с использованием SDL_MapRGB для безопасности
 void Background::modify_pixels_safe(SDL_Rect rct) {
     if (SDL_MUSTLOCK(crop_img)) {
         SDL_LockSurface(crop_img);
@@ -295,7 +287,6 @@ void Background::modify_pixels_safe(SDL_Rect rct) {
             int src_y = i + dy;
 
             if (src_x >= 0 && src_x < crop_img->w && src_y >= 0 && src_y < crop_img->h) {
-                // Получаем цвет пикселя-источника
                 Uint32 pixel = get_pixel(crop_img, src_x, src_y);
                 put_pixel(crop_img, j, i, pixel);
             }
@@ -304,6 +295,12 @@ void Background::modify_pixels_safe(SDL_Rect rct) {
 
     if (SDL_MUSTLOCK(crop_img)) {
         SDL_UnlockSurface(crop_img);
+    }
+
+    // [ИСПРАВЛЕНИЕ УТЕЧКИ]: Уничтожаем старую текстуру перед созданием новой
+    if (background != nullptr) {
+        SDL_DestroyTexture(background);
+        background = nullptr;
     }
     background = SDL_CreateTextureFromSurface(renderer, crop_img);
 }

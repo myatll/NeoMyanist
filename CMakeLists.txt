@@ -52,3 +52,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(MyatllNotepad PUBLIC
         ${MYATLL_LIBS_DIR}
 )
+
+#add_compile_options(-fsanitize=address)
