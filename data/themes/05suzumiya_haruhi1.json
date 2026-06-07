@@ -19,6 +19,9 @@
       ], 
       "no_selected": [
           243, 247, 250
+      ], 
+      "genres": [
+          252, 214, 167
       ]
   },
   "color": {
@@ -27,6 +30,9 @@
     ],
     "background": [
         57, 34, 28, 160
+    ],
+    "info_background": [
+        57, 34, 28, 200
     ],
     "menu_background": [
         59, 39, 33, 220
@@ -47,7 +53,10 @@
         56, 49, 56, 255
     ],
     "selected_filter": [
-        198, 152, 119, 255
+        252, 210, 165, 100
+    ],
+    "item_state": [
+        248, 168, 27, 150
     ]
   },
   "icon_names": {
@@ -55,7 +64,8 @@
       "remove",
       "sentiment_extremely_dissatisfied",
       "sentiment_satisfied",
-      "sentiment_very_satisfied"
+      "sentiment_very_satisfied",
+      "mood_heart"
     ], 
     "status": [
       "remove",
@@ -65,26 +75,45 @@
       "timer"
     ]
   },
-  "icon_colors": [
-    [
-      196, 196, 196
+  "icon_colors": {
+    "opinion": [
+      [
+        196, 196, 196
+      ],
+      [
+        255, 99, 71
+      ], 
+      [
+        244, 164, 96
+      ], 
+      [
+        127, 255, 212
+      ], 
+      [
+        0, 212, 212
+      ]
     ],
-    [
-      255, 99, 71
-    ], 
-    [
-      244, 164, 96
-    ], 
-    [
-      127, 255, 212
-    ], 
-    [
-      0, 128, 128
+    "status": [
+      [
+        196, 196, 196
+      ],
+      [
+        255, 99, 71
+      ], 
+      [
+        244, 164, 96
+      ], 
+      [
+        127, 255, 212
+      ], 
+      [
+        0, 128, 128
+      ]
     ]
-  ],
+  },
   "font_size": {
       "general": 16,
-      "low": 14,
+      "low": 14.5,
       "big": 18,
       "menu": 14,
       "menu_icons": 19,

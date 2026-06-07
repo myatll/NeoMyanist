@@ -25,14 +25,15 @@ int main(int argc, char* argv[]) {
     if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) { SDL_Quit(); return 1; }
     if (TTF_Init() != 0) { SDL_Quit(); IMG_Quit(); return 1; }
 
-    json settings;
-    std::ifstream file("../data/theme.json");
-    file >> settings;
+    json state;
+    std::ifstream file("../data/state.json");
+    file >> state;
     file.close();
 
-    json state;
-    file.open("../data/state.json");
-    file >> state;
+
+    json settings;
+    file.open(state["theme"].get<std::string>().c_str());
+    file >> settings;
     file.close();
 
     SDL_Event e;
@@ -45,6 +46,7 @@ int main(int argc, char* argv[]) {
         {static_cast<Uint8>(settings["color"]["item"][0]), static_cast<Uint8>(settings["color"]["item"][1]), static_cast<Uint8>(settings["color"]["item"][2]), static_cast<Uint8>(settings["color"]["item"][3])},
         {static_cast<Uint8>(settings["color"]["aimed_item"][0]), static_cast<Uint8>(settings["color"]["aimed_item"][1]), static_cast<Uint8>(settings["color"]["aimed_item"][2]), static_cast<Uint8>(settings["color"]["aimed_item"][3])},
         {static_cast<Uint8>(settings["color"]["selected_item"][0]), static_cast<Uint8>(settings["color"]["selected_item"][1]), static_cast<Uint8>(settings["color"]["selected_item"][2]), static_cast<Uint8>(settings["color"]["selected_item"][3])},
+        {static_cast<Uint8>(settings["color"]["item_state"][0]), static_cast<Uint8>(settings["color"]["item_state"][1]), static_cast<Uint8>(settings["color"]["item_state"][2]), static_cast<Uint8>(settings["color"]["item_state"][3])},
         {static_cast<Uint8>(settings["color"]["selected_filter"][0]), static_cast<Uint8>(settings["color"]["selected_filter"][1]), static_cast<Uint8>(settings["color"]["selected_filter"][2]), static_cast<Uint8>(settings["color"]["selected_filter"][3])},
         {static_cast<Uint8>(settings["color"]["aimed_menu_item"][0]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][1]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][2]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][3])},
         {static_cast<Uint8>(settings["color"]["border"][0]), static_cast<Uint8>(settings["color"]["border"][1]), static_cast<Uint8>(settings["color"]["border"][2]), static_cast<Uint8>(settings["color"]["border"][3])},
@@ -185,12 +187,12 @@ int main(int argc, char* argv[]) {
                 running = false;
             } else if (e.type == SDL_KEYDOWN) {
                 if (e.key.keysym.sym == SDLK_F5) {
-                    file.open("../data/theme.json");
-                    file >> settings;
-                    file.close();
-
                     file.open("../data/state.json");
                     file >> state;
+                    file.close();
+
+                    file.open(state["theme"].get<std::string>().c_str());
+                    file >> settings;
                     file.close();
 
                     gInfo.allWindowBack = {static_cast<Uint8>(settings["color"]["all_window_back"][0]), static_cast<Uint8>(settings["color"]["all_window_back"][1]), static_cast<Uint8>(settings["color"]["all_window_back"][2]), static_cast<Uint8>(settings["color"]["all_window_back"][3])};
@@ -200,6 +202,7 @@ int main(int argc, char* argv[]) {
                     gInfo.item = {static_cast<Uint8>(settings["color"]["item"][0]), static_cast<Uint8>(settings["color"]["item"][1]), static_cast<Uint8>(settings["color"]["item"][2]), static_cast<Uint8>(settings["color"]["item"][3])};
                     gInfo.aimedItem = {static_cast<Uint8>(settings["color"]["aimed_item"][0]), static_cast<Uint8>(settings["color"]["aimed_item"][1]), static_cast<Uint8>(settings["color"]["aimed_item"][2]), static_cast<Uint8>(settings["color"]["aimed_item"][3])};
                     gInfo.selectedItem = {static_cast<Uint8>(settings["color"]["selected_item"][0]), static_cast<Uint8>(settings["color"]["selected_item"][1]), static_cast<Uint8>(settings["color"]["selected_item"][2]), static_cast<Uint8>(settings["color"]["selected_item"][3])};
+                    gInfo.itemState = {static_cast<Uint8>(settings["color"]["item_state"][0]), static_cast<Uint8>(settings["color"]["item_state"][1]), static_cast<Uint8>(settings["color"]["item_state"][2]), static_cast<Uint8>(settings["color"]["item_state"][3])};
                     gInfo.selectedFilter = {static_cast<Uint8>(settings["color"]["selected_filter"][0]), static_cast<Uint8>(settings["color"]["selected_filter"][1]), static_cast<Uint8>(settings["color"]["selected_filter"][2]), static_cast<Uint8>(settings["color"]["selected_filter"][3])};
                     gInfo.aimedMenuItem = {static_cast<Uint8>(settings["color"]["aimed_menu_item"][0]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][1]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][2]), static_cast<Uint8>(settings["color"]["aimed_menu_item"][3])};
                     gInfo.border = {static_cast<Uint8>(settings["color"]["border"][0]), static_cast<Uint8>(settings["color"]["border"][1]), static_cast<Uint8>(settings["color"]["border"][2]), static_cast<Uint8>(settings["color"]["border"][3])};
@@ -213,6 +216,9 @@ int main(int argc, char* argv[]) {
                     gInfo.statusIconColors.clear();
                     for (auto & i : settings["icon_colors"]["opinion"]) {gInfo.opinionIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });}
                     for (auto & i : settings["icon_colors"]["status"]) {gInfo.statusIconColors.push_back({static_cast<Uint8>(i[0]), static_cast<Uint8>(i[1]), static_cast<Uint8>(i[2]), 255 });}
+
+                    bg.generatePattern(settings["background_pattern"]["type"], settings["background_pattern"]["amplitude"], settings["background_pattern"]["frequency1"], settings["background_pattern"]["frequency2"], settings["background_pattern"]["noise_intensity"]);
+                    gInfo.needReSize = true;
                 }
             }
             else if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {

@@ -1,7 +1,7 @@
 {
   "background": "../data/backgrounds/Konachan.com - 68817.jpg",
   "background_pattern": {
-    "type": 0,
+    "type": -1,
     "amplitude": 16.0, 
     "frequency1": 0.1, 
     "frequency2": 0.23, 
@@ -12,13 +12,16 @@
           234, 225, 226
       ], 
       "menu": [
-          6, 10, 17
+          218, 219, 221
       ],
       "menu_unavailable": [
-          80, 80, 80
+          130, 148, 171
       ], 
       "no_selected": [
-          6, 10, 17
+          3, 4, 8
+      ], 
+      "genres": [
+          55, 77, 98
       ]
   },
   "color": {
@@ -26,10 +29,13 @@
         212, 214, 213, 0
     ],
     "background": [
-        57, 79, 102, 110
+        153, 164, 176, 110
+    ],
+    "info_background": [
+        153, 164, 176, 130
     ],
     "menu_background": [
-        183, 189, 192, 220
+        59, 69, 82, 220
     ],
     "item": [
         255, 253, 243, 180
@@ -44,10 +50,10 @@
         56, 78, 99, 100
     ],
     "border": [
-        69, 69, 69, 255
+        128, 128, 128, 255
     ],
     "selected_filter": [
-        0, 128, 128, 255
+        131, 148, 202, 200
     ]
   },
   "icon_names": {
@@ -55,7 +61,8 @@
       "remove",
       "sentiment_extremely_dissatisfied",
       "sentiment_satisfied",
-      "sentiment_very_satisfied"
+      "sentiment_very_satisfied",
+      "mood_heart"
     ], 
     "status": [
       "remove",
@@ -65,23 +72,42 @@
       "timer"
     ]
   },
-  "icon_colors": [
-    [
-      196, 196, 196
+  "icon_colors": {
+    "opinion": [
+      [
+        52, 52, 59
+      ],
+      [
+        181, 7, 58
+      ], 
+      [
+        245, 179, 93
+      ], 
+      [
+        58, 214, 105
+      ], 
+      [
+        83, 198, 207
+      ]
     ],
-    [
-      255, 99, 71
-    ], 
-    [
-      244, 164, 96
-    ], 
-    [
-      127, 255, 212
-    ], 
-    [
-      0, 128, 128
+    "status": [
+      [
+        52, 52, 59
+      ],
+      [
+        181, 7, 58
+      ], 
+      [
+        245, 179, 93
+      ], 
+      [
+        58, 214, 105
+      ], 
+      [
+        129, 120, 250
+      ]
     ]
-  ],
+  },
   "font_size": {
       "general": 16,
       "low": 14,

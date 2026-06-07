@@ -17,6 +17,7 @@ struct Global {
     SDL_Color item;
     SDL_Color aimedItem;
     SDL_Color selectedItem;
+    SDL_Color itemState;
     SDL_Color selectedFilter;
     SDL_Color aimedMenuItem;
     SDL_Color border;

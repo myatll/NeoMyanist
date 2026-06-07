@@ -124,7 +124,7 @@ void List::render() {
                     int drawOffset = drawElemNum*fullItemSize - static_cast<int>(scrollAnim) + (itemSize >> 1);
 
                     if (data[list[drawElemIndex].name].contains("id")) {
-                        SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+                        SDL_SetRenderDrawColor(g.renderer, g.itemState.r, g.itemState.g, g.itemState.b, g.itemState.a);
                         SDL_RenderDrawLineF(g.renderer, 10, drawOffset - (itemSize >> 2), 10, drawOffset + (itemSize >> 2));
                     }
 
@@ -171,8 +171,8 @@ void List::render() {
                         SDL_RenderCopy(g.renderer, tips[drawElemIndex].miniPoster, nullptr, &rect);
                     }
                     else SDL_RenderCopy(g.renderer, g.loadindImg, nullptr, &rect);
-
-                    RenderText_Wrapped(g.renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.defaultText, g.bigFont, false, false, posRect.w - 180);
+                    if (currentIndex == drawElemIndex) RenderText_Wrapped(g.renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.defaultText, g.bigFont, false, false, posRect.w - 180);
+                    else RenderText_Wrapped(g.renderer, tips[drawElemIndex].name, rect.w + 30, drawOffset - (tipSize >> 1) + 10, g.noSelectedText, g.bigFont, false, false, posRect.w - 180);
 
                     RenderText(g.renderer, tips[drawElemIndex].data["year"], posRect.w - 50, drawOffset - (tipSize >> 1) + 15, g.noSelectedText, g.lowFont, true, true);
                     RenderText(g.renderer, tips[drawElemIndex].genres, rect.w + 30, drawOffset + (tipSize >> 1) - 15, g.noSelectedText, g.lowFont, false, true, posRect.w - 110);

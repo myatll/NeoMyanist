@@ -153,9 +153,9 @@ void Search::render() {
         else SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
         DrawRoundedRect(g.renderer, {80, 10, posRect.w - 160, posRect.h - 20}, (posRect.h - 21) >> 1);
 
-        SDL_SetRenderDrawColor(g.renderer, g.selectedItem.r, g.selectedItem.g, g.selectedItem.b, g.selectedItem.a);
+        SDL_SetRenderDrawColor(g.renderer, g.itemState.r, g.itemState.g, g.itemState.b, g.itemState.a);
         if (isChange) SDL_RenderDrawLineF(g.renderer, 30, posRect.h - 1, posRect.w - 30, posRect.h - 1);
-        if (currentItem.contains("id")) DrawCircle(g.renderer, posRect.w - 10, 10, 4);
+        if (currentItem.contains("id")) SDL_RenderDrawLineF(g.renderer, 30, 0, posRect.w - 30, 0);
 
         SDL_SetRenderDrawColor(g.renderer, g.aimedItem.r, g.aimedItem.g, g.aimedItem.b, g.aimedItem.a);
         const int radius = static_cast<int>(TTF_FontHeight(g.iconsFont) * 0.625);
