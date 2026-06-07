@@ -1024,6 +1024,21 @@
         "status": 1,
         "year": "2022 год"
     },
+    "Вступай в стаю! Школа Сэтон": {
+        "addTime": 225,
+        "genres": [
+            "Комедия",
+            "Этти",
+            "Антропоморфизм",
+            "Школа"
+        ],
+        "id": "40483",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/40483/mini_alt-b717daca394dae2b2abe13551d66c917.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2020 год"
+    },
     "Вторая юность Хайбары": {
         "addTime": 1777306760,
         "genres": [
@@ -4706,23 +4721,64 @@
     },
     "Принцесса-рыцарь — невеста варвара": {
         "addTime": 1777307256,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Фэнтези",
+            "Романтика"
+        ],
+        "id": "60028",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/60028/mini_alt-bb1261202e9f31554f0eb872cf95b1fc.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2026 год"
     },
     "Притворная любовь": {
         "addTime": 1777328397,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Романтика",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "18897",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/18897/mini_alt-f7fe5132a67ca152649ffa844bd44b91.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
     },
     "Причина полюбить её": {
         "addTime": 195,
+        "genres": [
+            "Драма",
+            "Романтика",
+            "Взрослые персонажи",
+            "Любовный многоугольник"
+        ],
+        "id": "54846",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/54846/mini_alt-a555a171de40cf77d2c9d8a8978962de.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Прославленный": {
         "addTime": 1777308306,
+        "genres": [
+            "Экшен",
+            "Драма",
+            "Фэнтези",
+            "Фантастика"
+        ],
+        "id": "856",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/856/mini_alt-0c5ef365eaacf6cc120c80f514e3f2ce.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2006 год"
     },
     "Прячься, Макина!": {
         "addTime": 196,
@@ -4731,18 +4787,51 @@
     },
     "Психопаспорт": {
         "addTime": 1777326300,
+        "genres": [
+            "Экшен",
+            "Тайна",
+            "Фантастика",
+            "Триллер",
+            "Взрослые персонажи",
+            "Детектив",
+            "Психологическое"
+        ],
+        "id": "13601",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/13601/mini_alt-78d7ba2a423388307f4b6431424177ac.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2012 год"
     },
     "Раб спецотряда демонического города": {
         "addTime": 1777326620,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Фэнтези",
+            "Этти",
+            "Гарем"
+        ],
+        "id": "50392",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/50392/mini_alt-32015fe5200f0c7671accf9aef86687d.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2024 год"
     },
     "Рагна Багровый": {
         "addTime": 197,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Фэнтези"
+        ],
+        "id": "51297",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/51297/mini_alt-d955995ddf2a0b5d9cc358f9b2473799.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Раз героем мне не стать — самое время работу искать!": {
         "addTime": 1780836215,
@@ -4761,33 +4850,102 @@
     },
     "Развращённая гильдия": {
         "addTime": 198,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Фэнтези",
+            "Этти",
+            "Гарем"
+        ],
+        "id": "51212",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/51212/mini_alt-8d8006fb9b746c0f7cd65824604bad76.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2022 год"
     },
     "Разрушенный мир: Проклятие святого рыцаря": {
         "addTime": 1777326491,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Романтика",
+            "Гарем",
+            "Реинкарнация",
+            "Школа",
+            "Городское фэнтези"
+        ],
+        "id": "22663",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/22663/mini_alt-dc2c8164df5481b375a9e967a2e2404e.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2015 год"
     },
     "Рандеву с жизнью": {
         "addTime": 1777317855,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Романтика",
+            "Фантастика",
+            "Гарем",
+            "Школа",
+            "Городское фэнтези"
+        ],
+        "id": "15583",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/15583/mini_alt-4762cd6c40536d778aeacdc682d99c3f.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2013 год"
     },
     "Реальная девушка": {
         "addTime": 200,
+        "genres": [
+            "Сёдзё",
+            "Романтика",
+            "Культура отаку",
+            "Школа"
+        ],
+        "id": "36793",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/36793/mini_alt-af82b0912bfc1e649a48a0670893487f.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2018 год"
     },
-    "Ребёнок айдола": {
+    "Ребёнок идола": {
         "addTime": 201,
+        "genres": [
+            "Сэйнэн",
+            "Драма",
+            "Удостоено наград",
+            "Реинкарнация",
+            "Шоу-бизнес"
+        ],
+        "id": "52034",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/52034/mini_alt-b7cc29f086850ac768dfc4ba09db27ae.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
-    "Реинкарнация сильнейшего оммёдзи": {
+    "Реинкарнация сильнейшего оммёдзи: Эти монстры слишком слабы по сравнению с моим ёкаем": {
         "addTime": 202,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Исэкай",
+            "Реинкарнация"
+        ],
+        "id": "50932",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/50932/mini_alt-9a650da213587b97d3144f29ce306f2a.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Ремейк нашей жизни": {
         "addTime": 1779030749,
@@ -4804,10 +4962,24 @@
         "status": 2,
         "year": "2021 год"
     },
-    "Розарио + вампир": {
+    "Розарио + Вампир": {
         "addTime": 203,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Фэнтези",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Школа",
+            "Вампиры"
+        ],
+        "id": "2993",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/2993/mini_alt-fe383c0a61c7f7f6986396aec29c935b.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2008 год"
     },
     "Романтический убийца": {
         "addTime": 205,
@@ -4992,60 +5164,177 @@
         "status": 1,
         "year": "2019 год"
     },
-    "Связанные небом": {
+    "Связанные небом: В уединении, где мы наименее одиноки": {
         "addTime": 213,
+        "genres": [
+            "Драма",
+            "Романтика",
+            "Этти",
+            "Гарем"
+        ],
+        "id": "8861",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/8861/mini_alt-3d27a69ecc8a312e15f304e03eec9059.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2010 год"
     },
     "Связь сердец": {
         "addTime": 214,
+        "genres": [
+            "Драма",
+            "Романтика",
+            "Сверхъестественное",
+            "Любовный многоугольник",
+            "Школа"
+        ],
+        "id": "11887",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/11887/mini_alt-224a94d90af95bbfedd29992b9cb351b.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2012 год"
     },
     "Секрет Харуки Ногидзаки": {
         "addTime": 1777308594,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Культура отаку",
+            "Школа"
+        ],
+        "id": "3467",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/3467/mini_alt-f284d0e99fba526d44027cda4c41ab83.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2008 год"
     },
     "Сельскохозяйственные истории": {
         "addTime": 1777326611,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "Гурман",
+            "Сверхъестественное",
+            "Взрослые персонажи"
+        ],
+        "id": "3001",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/3001/mini_alt-56bc2d059048d5f1c06550c04bd7933b.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2007 год"
     },
     "Семейная жизнь легкомысленной ведьмы": {
         "addTime": 215,
+        "genres": [
+            "Комедия",
+            "Фэнтези",
+            "Гэг-юмор"
+        ],
+        "id": "52985",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/52985/mini_alt-a4b35bbbd5f6b78f242d1982524e4ef7.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
-    "Семь мертных грехов": {
+    "Семь смертных грехов": {
         "addTime": 216,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "23755",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/23755/mini_alt-d3e79325a759ab9eedfb04a76eb611ae.jpeg",
         "opinion": 2,
-        "status": 2
+        "service": "Shikimori",
+        "status": 2,
+        "year": "2014 год"
     },
     "Сильнейший мудрец низшей эмблемы": {
         "addTime": 1777319537,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Реинкарнация"
+        ],
+        "id": "47161",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/47161/mini_alt-2660c8fe4e37ebaf6500dd0b8a5adfc1.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2022 год"
     },
-    "Сказания Зестирии: Крест": {
+    "Сказания Зестирии": {
         "addTime": 1777312143,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "30911",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/30911/mini_alt-de0223f1c395d80e88a24078e87c2c0e.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2016 год"
     },
     "Сказка о сахарном яблоке": {
         "addTime": 1777326595,
+        "genres": [
+            "Приключения",
+            "Драма",
+            "Фэнтези",
+            "Романтика",
+            "Изобразительное искусство"
+        ],
+        "id": "49980",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/49980/mini_alt-e00ea5a709c4baf320cd579f8e2aa791.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Скитальцы": {
         "addTime": 217,
+        "genres": [
+            "Сэйнэн",
+            "Экшен",
+            "Приключения",
+            "Комедия",
+            "Фэнтези",
+            "Взрослые персонажи",
+            "Жестокость",
+            "Исторический",
+            "Исэкай",
+            "Военное",
+            "Самураи"
+        ],
+        "id": "31339",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/31339/mini_alt-45f0bddf11878a83383009609d30a2bf.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2016 год"
     },
     "Скрытое сокровище Нананы": {
         "addTime": 218,
+        "genres": [
+            "Приключения",
+            "Тайна",
+            "Сверхъестественное"
+        ],
+        "id": "21561",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/21561/mini_alt-faeaf6cb237a49abc114e70f8ca85255.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
     },
     "Скучный мир, где не существует самой идеи похабных шуток": {
         "addTime": 219,
@@ -5072,30 +5361,61 @@
         "opinion": 0,
         "status": 1
     },
-    "Слегка настойчивая тёмная эльфийка последовала за мной из другого мира": {
+    "Слегка настойчивая тёмная эльфийка последовала за мной из другого мира: Мини-аниме": {
         "addTime": 221,
+        "genres": [
+            "Комедия",
+            "Сверхъестественное"
+        ],
+        "id": "61410",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/61410/mini_alt-e172f8e2f5f45dff6ed10f3d61e88c94.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
-    "Слишком много проигравших героинь": {
+    "Слишком много проигравших героинь!": {
         "addTime": 222,
-        "opinion": 0,
-        "status": 1
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "57524",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/57524/mini_alt-352b6c074ada45c8c2eadb6e88f1bd44.jpeg",
+        "opinion": 4,
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2024 год"
     },
     "Служащий x Служба": {
         "addTime": 223,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "Взрослые персонажи",
+            "Работа"
+        ],
+        "id": "18119",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/18119/mini_alt-f737425c07309bf1de6c22b1cd3ce1f4.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2013 год"
     },
     "Сними меня": {
         "addTime": 224,
+        "genres": [
+            "Романтика",
+            "Этти",
+            "Школа"
+        ],
+        "id": "16397",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/16397/mini_alt-8e9154fc05e8f821e4c1c88ee625770b.jpeg",
         "opinion": 0,
-        "status": 1
-    },
-    "Собираемся все в академии Сэтон!": {
-        "addTime": 225,
-        "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2013 год"
     },
     "Созданный в Бездне": {
         "addTime": 1780785828,
@@ -5132,13 +5452,35 @@
     },
     "Сотня": {
         "addTime": 1777326514,
+        "genres": [
+            "Экшен",
+            "Романтика",
+            "Фантастика",
+            "Этти",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "31338",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/31338/mini_alt-825ccc9ce0ac0c56cc950953cd8a177d.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2016 год"
     },
-    "Союз серокрылых": {
+    "Союз Серокрылых": {
         "addTime": 226,
+        "genres": [
+            "Драма",
+            "Фэнтези",
+            "Тайна",
+            "Психологическое"
+        ],
+        "id": "387",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/387/mini_alt-a72857070a9790001ec2659b4002b5a1.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2002 год"
     },
     "Стальной алхимик": {
         "addTime": 1780767792,
@@ -5160,13 +5502,35 @@
     },
     "Старик из деревни становится Святым мечом": {
         "addTime": 227,
+        "genres": [
+            "Экшен",
+            "Фэнтези"
+        ],
+        "id": "59452",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59452/mini_alt-bf034b04be337c81ae969cffd616a1b5.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Старшая школа DxD": {
         "addTime": 228,
+        "genres": [
+            "Экшен",
+            "Комедия",
+            "Романтика",
+            "Сверхъестественное",
+            "Этти",
+            "Гарем",
+            "Мифология",
+            "Школа"
+        ],
+        "id": "11617",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/11617/mini_alt-ea5877727606c32bae1b8fce2d003856.jpeg",
         "opinion": 3,
-        "status": 3
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2012 год"
     },
     "Стать сильнее! Новая сага": {
         "addTime": 230,
@@ -5201,33 +5565,100 @@
     },
     "Страна самоцветов": {
         "addTime": 232,
+        "genres": [
+            "Сэйнэн",
+            "Экшен",
+            "Драма",
+            "Фэнтези",
+            "Тайна",
+            "Антропоморфизм"
+        ],
+        "id": "35557",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/35557/mini_alt-4fe0e36ca425a58f73989610933aec62.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Страна чудес смертников": {
         "addTime": 1777325746,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Фантастика",
+            "Сверхъестественное",
+            "Триллер",
+            "Жестокость",
+            "Игра с высокими ставками",
+            "Выживание"
+        ],
+        "id": "6880",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/6880/mini_alt-ebe07599e23fedbfecd3d41c3cb1ffbe.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2011 год"
     },
-    "Судьба/Ночь схватки": {
+    "Судьба": {
         "addTime": 233,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Городское фэнтези"
+        ],
+        "id": "28701",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/28701/mini_alt-51afb5a08fa5cf6e82ad0fe094b5991a.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2015 год"
     },
     "Суперпринцесса Кагуя!": {
         "addTime": 1777326805,
+        "genres": [
+            "Экшен",
+            "Фантастика",
+            "Сверхъестественное",
+            "Музыка",
+            "Мифология"
+        ],
+        "id": "62896",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/62896/mini_alt-713474afe3535dfb2fca7ce6c66afd51.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2026 год"
     },
     "Счастливая звезда": {
         "addTime": 1777313689,
+        "genres": [
+            "Комедия",
+            "CGDCT",
+            "Гэг-юмор",
+            "Культура отаку",
+            "Школа"
+        ],
+        "id": "1887",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/1887/mini_alt-0fe4b6d379126c119b2e1d7a1c8b5ae2.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2007 год"
     },
     "Сёстры Минами": {
         "addTime": 1777316787,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "CGDCT",
+            "Школа"
+        ],
+        "id": "59235",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59235/mini_alt-12e7f54eeab53bcc0f58e2a0613236fb.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "Анонс"
     },
     "Табакошка": {
         "addTime": 1780781827,
@@ -5249,20 +5680,55 @@
         "opinion": 0,
         "status": 1
     },
-    "Тайные желания отвергнутых обществом": {
+    "Тайные желания отвергнутых": {
         "addTime": 235,
+        "genres": [
+            "Сэйнэн",
+            "Драма",
+            "Романтика",
+            "Любовный многоугольник",
+            "Школа"
+        ],
+        "id": "32949",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/32949/mini_alt-f2f7b0e75fc49978aa5c6d37651183d3.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
-    "Такт Опус": {
+    "Такт. Опус Судьба": {
         "addTime": 236,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Фантастика",
+            "Музыка",
+            "Городское фэнтези"
+        ],
+        "id": "48556",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/48556/mini_alt-bc4f4f0508df9eaf666ba819b7e75640.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2021 год"
     },
     "Танец клинка элементалиста": {
         "addTime": 237,
+        "genres": [
+            "Экшен",
+            "Комедия",
+            "Фэнтези",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "22877",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/22877/mini_alt-353e1a3ef0050dd69b45f2022a2c70c3.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
     },
     "Танец мечей": {
         "addTime": 238,
@@ -5280,25 +5746,39 @@
         "status": 1,
         "year": "2017 год"
     },
-    "Твоё имя": {
-        "addTime": 239,
-        "opinion": 0,
-        "status": 1
-    },
-    "Тебе не уйти": {
-        "addTime": 240,
-        "opinion": 1,
-        "status": 3
-    },
     "Терраса кафе богинь": {
         "addTime": 241,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Романтика",
+            "Этти",
+            "Взрослые персонажи",
+            "Гарем",
+            "Работа"
+        ],
+        "id": "52973",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/52973/mini_alt-60c1126b989dad541d4ef47d0ee2088c.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Тетрадь дружбы Нацумэ": {
         "addTime": 242,
+        "genres": [
+            "Сёдзё",
+            "Повседневность",
+            "Сверхъестественное",
+            "Иясикэй",
+            "Мифология"
+        ],
+        "id": "4081",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/4081/mini_alt-2130212ca2f698451aad4262bb8c10e9.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2008 год"
     },
     "Технолайз": {
         "addTime": 1780220855,
@@ -5321,28 +5801,50 @@
     },
     "Тирания вооружённых девушек": {
         "addTime": 1777326454,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Комедия",
+            "Этти",
+            "Гарем",
+            "Боевые искусства",
+            "Школа"
+        ],
+        "id": "33475",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/33475/mini_alt-e2af31134179df0d87bece56eb0c0f21.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Титосэ внутри бутылки рамунэ": {
         "addTime": 1777307606,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "59517",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59517/mini_alt-b51f6924038940f5e35cdbcd6de94420.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
-    "Томо - девушка": {
-        "addTime": 243,
-        "opinion": 0,
-        "status": 1
-    },
-    "Томо-тян – девушка!": {
+    "Томо — девушка!": {
         "addTime": 244,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "52305",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/52305/mini_alt-1c6180855dfb447fd4660ae47f1dd1d6.jpeg",
         "opinion": 0,
-        "status": 1
-    },
-    "Тоннель в лето выход прощаний": {
-        "addTime": 245,
-        "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Торадора!": {
         "addTime": 246,
@@ -5428,13 +5930,34 @@
     },
     "У меня мало друзей": {
         "addTime": 250,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "10719",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/10719/mini_alt-dbbc117c14920f70236191e9cb876662.jpeg",
         "opinion": 3,
-        "status": 3
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2011 год"
     },
-    "Убивала слизней 300 лет до максимального уровня": {
+    "Убивая слизней триста лет, сама того не заметив, я достигла максимального уровня": {
         "addTime": 251,
+        "genres": [
+            "Комедия",
+            "Фэнтези",
+            "CGDCT",
+            "Исэкай"
+        ],
+        "id": "40586",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/40586/mini_alt-33b663c68798c4a61525c9c77bbdbc64.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2021 год"
     },
     "Убийца Акамэ!": {
         "addTime": 252,
@@ -5451,10 +5974,20 @@
         "status": 3,
         "year": "2014 год"
     },
-    "Убийца Гоблинов": {
+    "Убийца гоблинов": {
         "addTime": 1777312446,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Жестокость"
+        ],
+        "id": "37349",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/37349/mini_alt-f74eb727465742ee0e14ad4548760dbc.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2018 год"
     },
     "Убойный ангел Докуро": {
         "addTime": 253,
@@ -5463,8 +5996,21 @@
     },
     "Удар крови": {
         "addTime": 254,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Этти",
+            "Гарем",
+            "Школа",
+            "Городское фэнтези",
+            "Вампиры"
+        ],
+        "id": "18277",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/18277/mini_alt-06a8eacb4e399a6ecf87b0c5aa31e299.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2013 год"
     },
     "Укротитель зверей, изгнанный из команды героя, встретил девочку-кошку из сильнейшей расы": {
         "addTime": 257,
@@ -5548,8 +6094,17 @@
     },
     "Фермерская жизнь в ином мире": {
         "addTime": 262,
+        "genres": [
+            "Фэнтези",
+            "Повседневность",
+            "Исэкай"
+        ],
+        "id": "51462",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/51462/mini_alt-cdf3b9de134692002357093db8971647.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Флотская коллекция": {
         "addTime": 1780787719,
@@ -5569,13 +6124,20 @@
     },
     "Фокусница-старшеклассница": {
         "addTime": 1777326842,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "Романтика",
+            "Этти",
+            "Исполнительское искусство",
+            "Школа"
+        ],
+        "id": "38610",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/38610/mini_alt-a2f941e3d7883c4def7622b81853938d.jpeg",
         "opinion": 0,
-        "status": 1
-    },
-    "Форма голоса": {
-        "addTime": 263,
-        "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2019 год"
     },
     "Фронт кровавой блокады": {
         "addTime": 1780782851,
@@ -5614,25 +6176,53 @@
         "opinion": 0,
         "status": 1
     },
-    "Ходячий замок": {
-        "addTime": 1777308064,
-        "opinion": 0,
-        "status": 1
-    },
     "Храм: Никто не может жить в одиночестве": {
         "addTime": 265,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Этти",
+            "Гарем"
+        ],
+        "id": "54275",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/54275/mini_alt-f135d003001ebf52518c195213e41b25.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2023 год"
     },
     "Хранитель вечности": {
         "addTime": 1777306736,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Фэнтези",
+            "Фантастика"
+        ],
+        "id": "33478",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/33478/mini_alt-ca0ca230d801cce0affc7ee4a1ce4bb4.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Хромированный Региос": {
         "addTime": 1777326847,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Фантастика",
+            "Военное",
+            "Школа",
+            "Супер сила"
+        ],
+        "id": "4186",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/4186/mini_alt-e8824157f007955d5243289e5dbec2d2.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2009 год"
     },
     "Хроники Акаши — худшего магического преподавателя": {
         "addTime": 266,
@@ -5648,10 +6238,20 @@
         "status": 1,
         "year": "2017 год"
     },
-    "Хроники людей и демонов ": {
+    "Хроники людей и демонов": {
         "addTime": 267,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези",
+            "Исторический"
+        ],
+        "id": "49778",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/49778/mini_alt-4177bca91312ac25c2ffc98d52ffbaa6.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Хроники мифического духа": {
         "addTime": 268,
@@ -5660,13 +6260,45 @@
     },
     "Худшая работа «оценщика» оказалась самой сильной": {
         "addTime": 269,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "59144",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59144/mini_alt-c33ee73b238055d894df9827b907e467.jpeg",
         "opinion": 3,
-        "status": 2
+        "service": "Shikimori",
+        "status": 2,
+        "year": "2025 год"
+    },
+    "Хёка": {
+        "addTime": 240,
+        "genres": [
+            "Тайна",
+            "Повседневность",
+            "Школа"
+        ],
+        "id": "12189",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/12189/mini_alt-4052092de2bb8b02e93de0c080d8d14d.jpeg",
+        "opinion": 1,
+        "service": "Shikimori",
+        "status": 3,
+        "year": "2012 год"
     },
     "Целитель, которого исключили из группы, оказался сильнейшим!": {
         "addTime": 270,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "57944",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/57944/mini_alt-5df407c2acdc761f82bc8a3c158779f6.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2024 год"
     },
     "Человек-дьявол: Плакса": {
         "addTime": 1780787121,
@@ -5688,38 +6320,98 @@
     },
     "Чемпион!": {
         "addTime": 1777320013,
+        "genres": [
+            "Экшен",
+            "Комедия",
+            "Романтика",
+            "Сверхъестественное",
+            "Этти",
+            "Гарем",
+            "Мифология"
+        ],
+        "id": "12293",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/12293/mini_alt-e7f2851bbe82a25103e9b79fef04ef4b.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2012 год"
     },
-    "Черный призыватель": {
-        "addTime": 271,
-        "opinion": 0,
-        "status": 1
-    },
-    "Чистюля Аояма": {
+    "Чистюля! Аояма": {
         "addTime": 272,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "Спорт",
+            "Гэг-юмор",
+            "Школа",
+            "Командный спорт"
+        ],
+        "id": "34825",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/34825/mini_alt-37e41a6ff129aa1c76d3bb6d9ba060e3.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Чобиты": {
         "addTime": 1777309309,
+        "genres": [
+            "Сэйнэн",
+            "Комедия",
+            "Драма",
+            "Романтика",
+            "Фантастика",
+            "Этти"
+        ],
+        "id": "59",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/59/mini_alt-ece451ffa65f7be7457b32c325b6f9e6.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2002 год"
     },
     "Что будет делать сильнейший король в своей второй жизни?": {
         "addTime": 274,
+        "genres": [
+            "Фэнтези",
+            "Исэкай",
+            "Реинкарнация"
+        ],
+        "id": "60146",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/60146/mini_alt-005d04d2ecc1f30baf9b3cfccb86861b.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2025 год"
     },
     "Что ты будешь делать во время апокалипсиса? Будешь ли ты занят? Могу ли я спасти тебя?": {
         "addTime": 1777328576,
+        "genres": [
+            "Драма",
+            "Фэнтези",
+            "Романтика",
+            "Фантастика"
+        ],
+        "id": "33502",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/33502/mini_alt-fc629579f45f90cefbf5247a07561f53.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Чудачества любви не помеха!": {
         "addTime": 1777312933,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "14741",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/14741/mini_alt-2530208a6703371438e5eda5318987fa.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2012 год"
     },
     "Чудовище за соседней партой": {
         "addTime": 1780782646,
@@ -5738,8 +6430,32 @@
     },
     "Чёрная пуля": {
         "addTime": 277,
+        "genres": [
+            "Экшен",
+            "Тайна",
+            "Фантастика"
+        ],
+        "id": "20787",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/20787/mini_alt-d0da4d1c6a8dda7212075c10b9303d16.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2014 год"
+    },
+    "Чёрный призыватель": {
+        "addTime": 271,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Исэкай",
+            "Реинкарнация"
+        ],
+        "id": "51064",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/51064/mini_alt-84deeabb041c35b6aa26004ba2a0aaf1.jpeg",
+        "opinion": 0,
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2022 год"
     },
     "Шарлотта": {
         "addTime": 1780787416,
@@ -5757,23 +6473,70 @@
     },
     "Шафл!": {
         "addTime": 1777325824,
+        "genres": [
+            "Комедия",
+            "Фэнтези",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Школа",
+            "Городское фэнтези"
+        ],
+        "id": "79",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/79/mini_alt-8e5a5ce317184c46688b0191e344a170.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2005 год"
     },
     "Школьные дни": {
         "addTime": 278,
+        "genres": [
+            "Драма",
+            "Романтика",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "2476",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/2476/mini_alt-b3cfd57e5519450dfd8db0484a9d9825.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2007 год"
     },
     "Шоколад Купидона": {
         "addTime": 279,
+        "genres": [
+            "Комедия",
+            "Романтика",
+            "Гарем",
+            "Школа"
+        ],
+        "id": "32323",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/32323/mini_alt-aca172e34f83bc21063a6378c2dba8e7.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2015 год"
     },
     "Эй, люби меня всерьёз!": {
         "addTime": 1777326836,
+        "genres": [
+            "Экшен",
+            "Комедия",
+            "Романтика",
+            "Этти",
+            "Гарем",
+            "Боевые искусства",
+            "Школа",
+            "Супер сила"
+        ],
+        "id": "10213",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/10213/mini_alt-b6d4f4bd6b88a21d830db4b6b5e6eb80.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2011 год"
     },
     "Эльфийская песнь": {
         "addTime": 281,

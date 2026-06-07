@@ -61,6 +61,7 @@ void List::returnEditedItem(std::string &oldName, std::string newName, json& cur
     data.erase(oldName);
     data[newName] = currentItem;
     updateList("", nullptr);
+    // filt->updateDrawState();
 
     for (std::vector<listDrawItem>::size_type i = 0; i != list.size(); ++i) {
         if (list[i].name == newName) {
@@ -84,6 +85,7 @@ void List::addItem(std::string name, json& currentItem) {
 
     data[name] = newItem;
     updateList("", nullptr);
+    // filt->updateDrawState();
 
     for (std::vector<listDrawItem>::size_type i = 0; i != list.size(); ++i) {
         if (list[i].name == name) {

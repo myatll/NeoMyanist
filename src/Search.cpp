@@ -236,6 +236,7 @@ void Search::handle() {
     if (g.e.type == SDL_KEYDOWN and search.getActive()) {
         if (!mode and !search.getText().empty()) {
             if (g.e.key.keysym.sym == SDLK_RETURN) {
+                mode = true;
                 if (!isChange) {
                     search.setActive(false);
                     list.addItem(search.getText(), currentItem);
@@ -246,7 +247,6 @@ void Search::handle() {
                     search.setText("");
                     isChange = false;
                 }
-                mode = true;
                 opinion = 0;
                 status = 0;
                 currentItem = {
