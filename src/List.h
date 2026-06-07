@@ -87,6 +87,7 @@ public:
     void setCategIter(Categories* categIter);
     void setInfoIter(ItemInfo* iinfoIter);
     void setFiltersIter(Filters* filtersIter);
+
     void returnEditedItem(std::string& oldName, std::string newName, json& currentItem);
     void addItem(std::string name, json& currentItem);
 

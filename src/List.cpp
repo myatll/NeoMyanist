@@ -448,9 +448,7 @@ void List::updateList(const std::string &name, const json &currentItem) {
                             if (ITgenre == genre) contains = true;
                         }
                         if (!contains) fullContains = false;
-                    } else {
-                        fullContains = false;
-                    }
+                    } else fullContains = false;
                 }
                 if (!fullContains) add_flag = false;
             }

@@ -4540,13 +4540,35 @@
     },
     "Последнее поле брани между тобой и мной, или Святая война сотворения мира": {
         "addTime": 189,
+        "genres": [
+            "Экшен",
+            "Фэнтези",
+            "Романтика",
+            "Военное"
+        ],
+        "id": "40595",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/40595/mini_alt-5d1897d57614d734aaa2d045ab918056.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2020 год"
     },
     "Последний Серафим": {
         "addTime": 190,
+        "genres": [
+            "Сёнен",
+            "Экшен",
+            "Драма",
+            "Фэнтези",
+            "Военное",
+            "Вампиры"
+        ],
+        "id": "26243",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/26243/mini_alt-d31ef3ccc50bf1d2673fcbd812783dfa.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2015 год"
     },
     "Потомки тьмы": {
         "addTime": 1779093101,
@@ -4602,28 +4624,80 @@
     },
     "Пощади меня, великий господин!": {
         "addTime": 193,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Комедия",
+            "Фэнтези"
+        ],
+        "id": "44406",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/44406/mini_alt-c5bda61ee894b9de09a111cdd7c66ee4.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2021 год"
     },
     "Поющий принц: Реально 2000% любовь": {
         "addTime": 1777311482,
+        "genres": [
+            "Дзёсей",
+            "Комедия",
+            "Романтика",
+            "Идолы (Муж.)",
+            "Музыка",
+            "Реверс-гарем",
+            "Школа"
+        ],
+        "id": "12711",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/12711/mini_alt-7cb2e00f8abbd8be4755e5e228d344b0.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2013 год"
     },
-    "Президент студсовета - горничная!": {
+    "Президент студсовета — горничная!": {
         "addTime": 1777315637,
+        "genres": [
+            "Сёдзё",
+            "Комедия",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "7054",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/7054/mini_alt-52237d45af8b94ba6548526919bf1fc2.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2010 год"
     },
-    "Приговорённый быть Героем": {
+    "Приговорённый быть героем: Тюремные записи девять тысяч четвёртого штрафного отряда героев": {
         "addTime": 1777326884,
+        "genres": [
+            "Экшен",
+            "Приключения",
+            "Фэнтези"
+        ],
+        "id": "56009",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/56009/mini_alt-32e7b271ec47b47992e03f8daed718ae.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2026 год"
     },
     "Признания": {
         "addTime": 194,
+        "genres": [
+            "Сёнен",
+            "Комедия",
+            "Романтика",
+            "Школа"
+        ],
+        "id": "34902",
+        "miniPoster": "https://shikimori.io/uploads/poster/animes/34902/mini_alt-d6239270226a1c4fb0b673a14ad2c641.jpeg",
         "opinion": 0,
-        "status": 1
+        "service": "Shikimori",
+        "status": 1,
+        "year": "2017 год"
     },
     "Принцесса Мононоке": {
         "addTime": 1777326591,

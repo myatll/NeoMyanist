@@ -97,8 +97,11 @@ int main(int argc, char* argv[]) {
     PROCESS_INFORMATION pi;
 
     // ---------------------------------
+#ifdef _DEBUG
     std::string cmd = "../venv/Scripts/pythonw.exe debug.py";
-    // std::string cmd = "find.exe";
+#else
+    std::string cmd = "find.exe";
+#endif
 
     if (!CreateProcessA(
         NULL,

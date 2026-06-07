@@ -77,7 +77,7 @@ void Search::setItem4Edit(std::string& name, json &data) {
     setTip(name, data);
     opinion = data["opinion"];
     status = data["status"];
-    filt->updateAvailableFilters({});
+    filt->updateDrawState();
 }
 
 void Search::setTip(std::string &name, json &data) {
